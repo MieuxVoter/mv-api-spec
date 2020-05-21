@@ -1,0 +1,361 @@
+openapi: 3.0.0
+info:
+  title: Mieux Voter
+  description: >-
+    An Application Programming Interface (API) for Majority Judgment (MJ)
+    Polling.
+  version: "1.0.1-oas3"
+  termsOfService: 'https://github.com/MieuxVoter'
+  contact:
+    email: app@mieuxvoter.fr
+servers:
+  - url: 'https://api.mieuxvoter.fr/v1'
+    description: 'Main (production) server'
+  - url: 'https://sandboxapi.mieuxvoter.fr/v1'
+    description: 'Internal staging server for testing'
+paths:
+  /polls:
+    get:
+      summary: Gets all polls.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Poll'
+    post:
+      summary: Creates a poll.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Poll'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Id of the created poll.
+          links:
+            GetPollByPollId:
+              $ref: '#/components/links/GetPollByPollId'
+            SetPollByPollId:
+              $ref: '#/components/links/SetPollByPollId'
+            DelPollByPollId:
+              $ref: '#/components/links/DelPollByPollId'
+            JudgeByPollId:
+              $ref: '#/components/links/JudgeByPollId'
+            ResultsByPollId:
+              $ref: '#/components/links/ResultsByPollId'
+        '400':
+          description: Bad Request. Expect at least 2 candidates and a title.
+  '/polls/{pollId}':
+    parameters:
+      - in: path
+        name: pollId
+        required: true
+        schema:
+          type: integer
+          format: int64
+    get:
+      summary: Gets a poll by ID
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Poll'
+        '404':
+            $ref: '#/components/responses/PollNotFound'
+    patch:
+      summary: Updates a poll
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Poll'
+      security:
+        - {}
+        - pollAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Poll'
+    delete:
+      summary: Deletes a poll
+      responses:
+        '200':
+          description: OK
+        '404':
+            $ref: '#/components/responses/PollNotFound'
+      security:
+        - {}
+        - pollAuth: []
+  '/judgments/{pollId}':
+    parameters:
+      - in: path
+        name: pollId
+        required: true
+        schema:
+          type: string
+    post:
+      summary: Creates a judgment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Judgment'
+      security:
+        - {}
+        - judgeAuth: []
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Id of the created judgment.
+          links:
+            GetJudgmentByJudgmentId:
+              $ref: '#/components/links/GetJudgmentByJudgmentId'
+            DelJudgmentByJudgmentId:
+              $ref: '#/components/links/DelJudgmentByJudgmentId'
+  '/judgments/{judgmentId}':
+    parameters:
+      - in: path
+        name: judgmentId
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Gets a judgment by ID
+      responses:
+        '200':
+          description: A judgment object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Judgment'
+    delete:
+      summary: Deletes a judgment
+      responses:
+        '200':
+          description: OK
+        '404':
+            description: Judgment not found
+      security:
+        - {}
+        - judgeAuth: []
+  '/invites/{pollId}':
+    parameters:
+      - in: path
+        name: pollId
+        required: true
+        schema:
+          type: string
+    post: 
+      description: Invite a judge to a poll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Invite'
+      responses:
+        '200':
+          description: Invitation was sent
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          $ref: '#/components/responses/PollNotFound'
+  '/results/{pollId}':
+    parameters:
+      - in: path
+        name: pollId
+        required: true
+        schema:
+          type: string
+    get:
+      description: Get results of a poll
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Result'
+        '404':
+          $ref: '#/components/responses/PollNotFound'
+components:
+  responses:
+    PollNotFound:
+      description: The specified poll was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Grade:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          description: Unique but short name of the candidate.
+    Judgment:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        grade:
+          type: string
+    Candidate:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          description: Unique but short name of the candidate.
+        judgments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Judgment'
+          description: The judgments received by this candidate.
+    Poll:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        title:
+          type: string
+          description: 'As <title>, I find these candidates:'
+        candidates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Candidate'
+          description: The candidates being judged in a poll.
+        grades:
+          type: array
+          items:
+            $ref: '#/components/schemas/Grade'
+          description: The grades on which one judges a candidate.
+    Invite:
+      type: object
+      properties:
+        type:
+          type: string
+        payload:
+          type: string
+    Result:
+      type: object
+      properties:
+        poll:
+          $ref: '#/components/schemas/Poll'
+        ranking:
+          type: array
+          items:
+            type: integer
+            format: int16
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      required:
+        - code
+        - message
+  securitySchemes:
+    judgeAuth:
+      type: http
+      scheme: bearer
+    pollAuth:
+      type: http
+      scheme: bearer
+    resultAuth:
+      type: http
+      scheme: bearer
+  links:
+    ResultsByPollId:
+      operationRef: '#/paths/~1results/~1{pollId}/get'
+      parameters:
+        pollId: '$response.body#/id'
+      description: >
+        The `id` value returned in the response can be used as the `pollId` parameter in GET /results/{resultId}.
+    GetPollByPollId:
+      operationRef: '#/paths/~1polls/~1{pollId}/get'
+      parameters:
+        pollId: '$response.body#/id'
+      description: >
+        The `id` value returned in the response can be used as the `pollId` parameter in GET /polls/{pollId}.
+    SetPollByPollId:
+      operationRef: '#/paths/~1polls/~1{pollId}/patch'
+      parameters:
+        pollId: '$response.body#/id'
+      description: >
+        The `id` value returned in the response can be used as the `pollId` parameter in PATCH /polls/{pollId}.
+    DelPollByPollId:
+      operationRef: '#/paths/~1polls/~1{pollId}/delete'
+      parameters:
+        pollId: '$response.body#/id'
+      description: >
+        The `id` value returned in the response can be used as the `pollId` parameter in DELETE /polls/{pollId}.
+    GetJudgmentByJudgmentId:
+      operationRef: '#/paths/~1judgments/~1{judgmentId}/get'
+      parameters:
+        judgmentId: '$response.body#/id'
+      description: >
+        The `id` value returned in the response can be used as the `judgmentId` parameter in GET /judgments/{judgmentId}.
+    DelJudgmentByJudgmentId:
+      operationRef: '#/paths/~1judgments/~1{judgmentId}/delete'
+      parameters:
+        judgmentId: '$response.body#/id'
+      description: >
+        The `id` value returned in the response can be used as the `judgmentId` parameter in DELETE /judgments/{judgmentId}.
+    JudgeByPollId:
+      operationRef: '#/paths/~1judgments/~1{pollId}/post'
+      parameters:
+        userId: '$response.body#/id'
+      description: >
+        The `id` value returned in the response can be used as the `pollId` parameter in GET /judgments/{pollId}.
+    InviteByPollId:
+      operationRef: '#/paths/~1invites/~1{pollId}/post'
+      parameters:
+        userId: '$response.body#/id'
+      description: >
+        The `id` value returned in the response can be used as the `pollId` parameter in GET /invites/{pollId}.
