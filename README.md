@@ -1,0 +1,2 @@
+# mvspec
+Specifications for OpenAPI
