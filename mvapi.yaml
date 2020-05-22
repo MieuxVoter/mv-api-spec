@@ -265,6 +265,8 @@ components:
           description: 'As <title>, I find these candidates:'
         candidates:
           type: array
+          minItems: 2
+          maxItems: 20
           items:
             $ref: '#/components/schemas/Candidate'
           description: The candidates being judged in a poll.
