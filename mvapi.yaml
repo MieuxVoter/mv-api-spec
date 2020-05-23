@@ -231,7 +231,7 @@ components:
           readOnly: true
         name:
           type: string
-          description: Unique but short name of the candidate.
+          description: Unique but short name of the grade, like "Excellent" or "To reject".
     Judgment:
       type: object
       properties:
