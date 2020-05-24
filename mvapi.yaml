@@ -206,7 +206,7 @@ paths:
           $ref: '#/components/responses/JudgmentNotFound'
       security:
         - judgeAuth: []
-  '/judges/{judge-id}/':
+  '/polls/{poll-id}/judges/{judge-id}/':
     parameters:
     - in: path
       name: judge-id
