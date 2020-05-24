@@ -278,9 +278,9 @@ components:
         id:
           type: string
           readOnly: true
-        has_voted:
+        has-voted:
           type: string
-        poll_id:
+        poll-id:
           type: string
         mail:
           type: object
