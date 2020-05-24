@@ -1,0 +1,9 @@
+type: object
+properties:
+  poll:
+    $ref: ./Poll.yaml
+  ranking:
+    type: array
+    items:
+      type: integer
+      format: int16

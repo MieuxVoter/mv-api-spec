@@ -1,0 +1,33 @@
+parameters:
+  - in: path
+    name: poll-id
+    required: true
+    schema:
+      type: string
+post:
+  summary: Creates a judgment
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Judgment.yaml
+  security:
+    - {}
+    - judgeAuth: []
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Id of the created judgment.
+      links:
+        GetJudgmentByJudgmentId:
+          $ref: ../components/links/GetJudgmentByJudgmentId.yaml
+        DelJudgmentByJudgmentId:
+          $ref: ../components/links/DelJudgmentByJudgmentId.yaml

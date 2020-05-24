@@ -1,0 +1,28 @@
+type: object
+properties:
+  id:
+    type: string
+    readOnly: true
+  title:
+    type: string
+    description: 'As <title>, I find these candidates:'
+  candidates:
+    type: array
+    minItems: 2
+    maxItems: 20
+    items:
+      $ref: ./Candidate.yaml
+    description: The candidates being judged in a poll.
+  grades:
+    type: array
+    items:
+      $ref: ./Grade.yaml
+    description: The grades on which one judges a candidate.
+  judges:
+    type: array
+    items:
+      $ref: ./Judge.yaml
+    description: The judges that are allowed to participate to the election.
+  restrict_judges:
+    type: boolean
+    description: Can anyone create a judge?

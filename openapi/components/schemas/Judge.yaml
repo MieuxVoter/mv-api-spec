@@ -1,0 +1,12 @@
+type: object
+properties:
+  id:
+    type: string
+    readOnly: true
+  has-voted:
+    type: string
+  poll-id:
+    type: string
+  mail:
+    type: object
+    description: Send a mail at the creation of the judge. The mail is not kept in memory.

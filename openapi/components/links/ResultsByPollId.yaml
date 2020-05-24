@@ -1,0 +1,6 @@
+operationRef: '#/paths/~1polls/~1{poll-id}/results/get'
+parameters:
+  pollId: $response.body#/id
+description: >
+  The `id` value returned in the response can be used as the `poll-id` parameter
+  in GET /results/{result-id}.

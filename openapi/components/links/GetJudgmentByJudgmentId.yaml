@@ -1,0 +1,6 @@
+operationRef: '#/paths/~1judgments/~1{judgment-id}/get'
+parameters:
+  judgmentId: $response.body#/id
+description: >
+  The `id` value returned in the response can be used as the `judgment-id`
+  parameter in GET /judgments/{judgment-id}.

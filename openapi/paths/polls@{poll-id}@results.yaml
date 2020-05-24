@@ -1,0 +1,17 @@
+parameters:
+  - in: path
+    name: poll-id
+    required: true
+    schema:
+      type: string
+get:
+  description: Get results of a poll
+  responses:
+    '200':
+      description: OK
+      content:
+        text/plain:
+          schema:
+            $ref: ../components/schemas/Result.yaml
+    '404':
+      $ref: ../components/responses/PollNotFound.yaml

@@ -1,0 +1,41 @@
+openapi: 3.0.0
+info:
+  title: Mieux Voter
+  description: >-
+    An Application Programming Interface (API) for Majority Judgment (MJ)
+    Polling.
+  version: 1.0.1-oas3
+  termsOfService: 'https://github.com/MieuxVoter'
+  contact:
+    email: app@mieuxvoter.fr
+servers:
+  - url: 'https://api.mieuxvoter.fr/v1'
+    description: Main (production) server
+  - url: 'https://sandboxapi.mieuxvoter.fr/v1'
+    description: Internal staging server for testing
+paths:
+  /polls:
+    $ref: paths/polls.yaml
+  '/polls/{poll-id}':
+    $ref: 'paths/polls@{poll-id}.yaml'
+  '/polls/{poll-id}/judges':
+    $ref: 'paths/polls@{poll-id}@judges.yaml'
+  '/polls/{poll-id}/results':
+    $ref: 'paths/polls@{poll-id}@results.yaml'
+  '/polls/{poll-id}/judgments':
+    $ref: 'paths/polls@{poll-id}@judgments.yaml'
+  '/judgments/{judgment-id}':
+    $ref: 'paths/judgments@{judgment-id}.yaml'
+  '/polls/{poll-id}/judges/{judge-id}/':
+    $ref: 'paths/polls@{poll-id}@judges@{judge-id}@.yaml'
+components:
+  securitySchemes:
+    judgeAuth:
+      type: http
+      scheme: bearer
+    pollAuth:
+      type: http
+      scheme: bearer
+    resultAuth:
+      type: http
+      scheme: bearer

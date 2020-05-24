@@ -1,0 +1,8 @@
+type: object
+properties:
+  id:
+    type: string
+    readOnly: true
+  name:
+    type: string
+    description: 'Unique but short name of the grade, like "Excellent" or "To reject".'

@@ -1,0 +1,43 @@
+get:
+  summary: Gets all polls.
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/Poll.yaml
+post:
+  summary: Creates a poll.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Poll.yaml
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Id of the created poll.
+      links:
+        GetPollByPollId:
+          $ref: ../components/links/GetPollByPollId.yaml
+        SetPollByPollId:
+          $ref: ../components/links/SetPollByPollId.yaml
+        DelPollByPollId:
+          $ref: ../components/links/DelPollByPollId.yaml
+        JudgeByPollId:
+          $ref: ../components/links/JudgeByPollId.yaml
+        ResultsByPollId:
+          $ref: ../components/links/ResultsByPollId.yaml
+    '400':
+      description: Bad Request. Expect at least 2 candidates and a title.

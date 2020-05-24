@@ -1,0 +1,13 @@
+{
+  "name": "mieux-voter",
+  "version": "1.0.0",
+  "dependencies": {
+    "@redocly/openapi-cli": "^0.12.10"
+  },
+  "private": true,
+  "scripts": {
+    "start": "openapi preview-docs",
+    "build": "openapi bundle -o dist",
+    "test": "openapi validate"
+  }
+}

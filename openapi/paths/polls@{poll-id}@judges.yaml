@@ -1,0 +1,22 @@
+parameters:
+  - in: path
+    name: poll-id
+    required: true
+    schema:
+      type: string
+post:
+  description: Add a judge to a poll
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Judge.yaml
+  responses:
+    '200':
+      description: Invitation was sent
+      content:
+        text/plain:
+          schema:
+            type: string
+    '404':
+      $ref: ../components/responses/PollNotFound.yaml

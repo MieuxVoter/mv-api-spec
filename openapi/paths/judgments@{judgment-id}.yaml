@@ -1,0 +1,24 @@
+parameters:
+  - in: path
+    name: judgment-id
+    required: true
+    schema:
+      type: string
+get:
+  summary: Gets a judgment by ID
+  responses:
+    '200':
+      description: A judgment object
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Judgment.yaml
+delete:
+  summary: Deletes a judgment
+  responses:
+    '200':
+      description: OK
+    '404':
+      $ref: ../components/responses/JudgmentNotFound.yaml
+  security:
+    - judgeAuth: []
