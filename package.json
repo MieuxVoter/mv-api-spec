@@ -6,8 +6,8 @@
   },
   "private": true,
   "scripts": {
-    "start": "openapi preview-docs",
-    "build": "openapi bundle --output ./mv-openapi.yaml",
-    "test": "openapi validate"
+    "start": "openapi preview-docs ./openapi/mv-openapi-root.yaml",
+    "build": "openapi bundle --output ./mv-openapi.yaml ./openapi/mv-openapi-root.yaml",
+    "test": "openapi validate ./openapi/mv-openapi-root.yaml"
   }
 }
