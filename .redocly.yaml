@@ -17,7 +17,7 @@ lint:
     license-url: off
     no-extra-fields: off
     operation-description: off
-    operation-operationId: off
+    operation-operationId: on
     operation-tags: off
     provide-contact: off
     servers-no-trailing-slash: off

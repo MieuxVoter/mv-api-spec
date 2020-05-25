@@ -1,4 +1,4 @@
-operationRef: '#/paths/~1polls/~1{poll-id}/judges/post'
+operationRef: 'add-judge-to-poll'
 parameters:
   userId: $response.body#/id
 description: >

@@ -1,4 +1,4 @@
-operationRef: '#/paths/~1polls/~1{poll-id}/results/get'
+operationRef: 'get-poll-results'
 parameters:
   pollId: $response.body#/id
 description: >

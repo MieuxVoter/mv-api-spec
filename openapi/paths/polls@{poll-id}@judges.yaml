@@ -5,6 +5,7 @@ parameters:
     schema:
       type: string
 post:
+  operationId: add-judge-to-poll
   description: Add a judge to a poll
   requestBody:
     content:

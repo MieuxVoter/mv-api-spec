@@ -1,4 +1,5 @@
 get:
+  operationId: get-polls
   summary: Gets all polls.
   responses:
     '200':
@@ -10,6 +11,7 @@ get:
             items:
               $ref: ../components/schemas/Poll.yaml
 post:
+  operationId: create-poll
   summary: Creates a poll.
   requestBody:
     required: true

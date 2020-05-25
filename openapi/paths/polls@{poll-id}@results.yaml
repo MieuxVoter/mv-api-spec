@@ -5,6 +5,7 @@ parameters:
     schema:
       type: string
 get:
+  operationId: get-poll-results
   description: Get results of a poll
   responses:
     '200':
