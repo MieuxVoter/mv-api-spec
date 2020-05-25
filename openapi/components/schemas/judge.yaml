@@ -2,11 +2,18 @@ type: object
 properties:
   id:
     type: string
+    description: A unique identifier
+    example: JtRm05yjMAuFCI2uwnFp
     readOnly: true
   has-voted:
-    type: string
+    type: boolean
+    description: True if the judge already voted on the poll, False otherwise
+    example: true
   poll-id:
     type: string
+    description: The identifier of the poll that the judge participates on.
+    example: '1jDe1e5eF_IkaYPuoIYX'
   mail:
     type: object
-    description: Send a mail at the creation of the judge. The mail is not kept in memory.
+    description: The mail that will eventually created at the creation of the judge (not kept in memory).
+    example: john-doe@example.com

@@ -2,27 +2,31 @@ type: object
 properties:
   id:
     type: string
+    description: 'A unique identifier'
+    example: '1jDe1e5eF_IkaYPuoIYX'
     readOnly: true
   title:
     type: string
-    description: 'As <title>, I find these candidates:'
+    example: 'What project should our neighbourhood invest in for the next year?'
+    description: 'The title of the poll'
   candidates:
     type: array
+    description: The candidates being judged in a poll.
     minItems: 2
     maxItems: 20
     items:
       $ref: ./candidate.yaml
-    description: The candidates being judged in a poll.
   grades:
     type: array
+    description: The grades on which one judges a candidate.
     items:
       $ref: ./grade.yaml
-    description: The grades on which one judges a candidate.
   judges:
     type: array
+    description: The judges that are allowed to participate to the election.
     items:
       $ref: ./judge.yaml
-    description: The judges that are allowed to participate to the election.
   restrict_judges:
     type: boolean
-    description: Can anyone create a judge?
+    description: True if anyone can participate to this poll, False otherwise.
+    example: false
