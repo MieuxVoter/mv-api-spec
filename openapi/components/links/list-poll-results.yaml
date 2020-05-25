@@ -1,4 +1,4 @@
-operationRef: 'get-poll-results'
+operationRef: 'list-poll-results'
 parameters:
   pollId: $response.body#/id
 description: >

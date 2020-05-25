@@ -28,7 +28,7 @@ post:
                 type: string
                 description: Id of the created judgment.
       links:
-        GetJudgmentByJudgmentId:
-          $ref: ../components/links/GetJudgmentByJudgmentId.yaml
-        DelJudgmentByJudgmentId:
-          $ref: ../components/links/DelJudgmentByJudgmentId.yaml
+        get-judgment:
+          $ref: ../components/links/get-judgment.yaml
+        delete-judgment:
+          $ref: ../components/links/delete-judgment.yaml
