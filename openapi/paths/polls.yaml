@@ -9,7 +9,7 @@ get:
           schema:
             type: array
             items:
-              $ref: ../components/schemas/Poll.yaml
+              $ref: ../components/schemas/poll.yaml
 post:
   operationId: create-poll
   summary: Creates a poll.
@@ -18,7 +18,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/Poll.yaml
+          $ref: ../components/schemas/poll.yaml
   responses:
     '201':
       description: Created

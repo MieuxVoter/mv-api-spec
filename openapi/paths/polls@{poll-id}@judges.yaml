@@ -11,7 +11,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/Judge.yaml
+          $ref: ../components/schemas/judge.yaml
   responses:
     '200':
       description: Invitation was sent
@@ -20,4 +20,4 @@ post:
           schema:
             type: string
     '404':
-      $ref: ../components/responses/PollNotFound.yaml
+      $ref: ../components/responses/poll-not-found.yaml

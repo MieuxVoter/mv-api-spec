@@ -9,5 +9,5 @@ properties:
   judgments:
     type: array
     items:
-      $ref: ./Judgment.yaml
+      $ref: ./judgment.yaml
     description: The judgments received by this candidate.

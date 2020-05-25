@@ -11,17 +11,17 @@ properties:
     minItems: 2
     maxItems: 20
     items:
-      $ref: ./Candidate.yaml
+      $ref: ./candidate.yaml
     description: The candidates being judged in a poll.
   grades:
     type: array
     items:
-      $ref: ./Grade.yaml
+      $ref: ./grade.yaml
     description: The grades on which one judges a candidate.
   judges:
     type: array
     items:
-      $ref: ./Judge.yaml
+      $ref: ./judge.yaml
     description: The judges that are allowed to participate to the election.
   restrict_judges:
     type: boolean
