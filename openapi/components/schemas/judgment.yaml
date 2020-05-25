@@ -1,9 +1,11 @@
 type: object
 properties:
   id:
-    type: string
+    type: integer
     description: A unique identifier
+    example: 4
     readOnly: true
   grade:
-    type: string
+    type: integer
     description: The grade item, according to the grades array defined when creating the poll.
+    example: 2
