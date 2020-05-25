@@ -1,8 +1,9 @@
 type: object
 properties:
   id:
-    type: string
+    type: integer
     description: A unique identifier
+    example: 0
     readOnly: true
   name:
     type: string

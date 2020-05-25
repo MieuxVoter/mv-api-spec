@@ -1,9 +1,10 @@
 type: object
 properties:
   id:
-    type: string
+    type: integer
     description: A unique identifier.
     readOnly: true
+    example: 4
   name:
     type: string
     description: Unique but short name of the candidate.
