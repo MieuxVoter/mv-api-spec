@@ -1,4 +1,4 @@
-operationRef: 'add-judge-to-poll'
+operationId: 'add-judge-to-poll'
 parameters:
   userId: $response.body#/id
 description: >

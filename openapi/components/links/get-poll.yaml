@@ -1,4 +1,4 @@
-operationRef: 'get-poll'
+operationId: 'get-poll'
 parameters:
   pollId: $response.body#/id
 description: >

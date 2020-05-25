@@ -1,4 +1,4 @@
-operationRef: 'create-judgment'
+operationId: 'create-judgment'
 parameters:
   userId: $response.body#/id
 description: >

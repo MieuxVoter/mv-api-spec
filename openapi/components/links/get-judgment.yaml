@@ -1,4 +1,4 @@
-operationRef: 'get-judgment'
+operationId: 'get-judgment'
 parameters:
   judgmentId: $response.body#/id
 description: >
