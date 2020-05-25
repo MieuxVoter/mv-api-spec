@@ -3,4 +3,4 @@ parameters:
   judgmentId: $response.body#/id
 description: >
   The `id` value returned in the response can be used as the `judgment-id`
-  parameter in GET /judgments/{judgment-id}.
+  parameter in GET /polls/{poll-id}/judgments/{judgment-id}.

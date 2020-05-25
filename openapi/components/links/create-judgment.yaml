@@ -3,4 +3,4 @@ parameters:
   userId: $response.body#/id
 description: >
   The `id` value returned in the response can be used as the `poll-id` parameter
-  in GET /judgments/{poll-id}.
+  in POST /polls/{poll-id}/judgments.
