@@ -1,18 +1,17 @@
 openapi: 3.0.0
 info:
   title: Mieux Voter
-  description: >-
-    An Application Programming Interface (API) for Majority Judgment (MJ)
-    Polling.
-  version: "1.0.1-oas3"
+  description: A poll application based on Majority Judgment (MJ).
+  version: 1.0.1-oas3
   termsOfService: 'https://github.com/MieuxVoter'
   contact:
+    name: Mieux Voter app developpers team
     email: app@mieuxvoter.fr
 servers:
   - url: 'https://api.mieuxvoter.fr/v1'
-    description: 'Main (production) server'
+    description: Main (production) server
   - url: 'https://sandboxapi.mieuxvoter.fr/v1'
-    description: 'Internal staging server for testing'
+    description: Internal staging server for testing
 paths:
   /polls:
     get:
@@ -76,7 +75,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Poll'
         '404':
-            $ref: '#/components/responses/PollNotFound'
+          $ref: '#/components/responses/PollNotFound'
     patch:
       summary: Updates a poll
       requestBody:
@@ -103,7 +102,7 @@ paths:
         '200':
           description: OK
         '404':
-            $ref: '#/components/responses/PollNotFound'
+          $ref: '#/components/responses/PollNotFound'
       security:
         - pollAuth: []
   '/polls/{poll-id}/judges':
@@ -113,7 +112,7 @@ paths:
         required: true
         schema:
           type: string
-    post: 
+    post:
       description: Add a judge to a poll
       requestBody:
         content:
@@ -208,12 +207,12 @@ paths:
         - judgeAuth: []
   '/polls/{poll-id}/judges/{judge-id}/':
     parameters:
-    - in: path
-      name: judge-id
-      required: true
-      schema:
-        type: string
-    get: 
+      - in: path
+        name: judge-id
+        required: true
+        schema:
+          type: string
+    get:
       summary: Get a judge from a poll
       responses:
         '200':
@@ -227,7 +226,7 @@ paths:
       security:
         - {}
         - pollAuth: []
-    delete: 
+    delete:
       summary: Delete a judge from a poll
       responses:
         '200':
@@ -237,54 +236,17 @@ paths:
       security:
         - pollAuth: []
 components:
-  responses:
-    PollNotFound:
-      description: The specified poll was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    JudgeNotFound:
-      description: The specified judge was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    JudgmentNotFound:
-      description: The specified judgment was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    judgeAuth:
+      type: http
+      scheme: bearer
+    pollAuth:
+      type: http
+      scheme: bearer
+    resultAuth:
+      type: http
+      scheme: bearer
   schemas:
-    Grade:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-        name:
-          type: string
-          description: Unique but short name of the grade, like "Excellent" or "To reject".
-    Judge:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-        has-voted:
-          type: string
-        poll-id:
-          type: string
-        mail:
-          type: object
-          description: Send a mail at the creation of the judge. The mail is not kept in memory.
     Judgment:
       type: object
       properties:
@@ -307,6 +269,30 @@ components:
           items:
             $ref: '#/components/schemas/Judgment'
           description: The judgments received by this candidate.
+    Grade:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          description: 'Unique but short name of the grade, like "Excellent" or "To reject".'
+    Judge:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        has-voted:
+          type: string
+        poll-id:
+          type: string
+        mail:
+          type: object
+          description: >-
+            Send a mail at the creation of the judge. The mail is not kept in
+            memory.
     Poll:
       type: object
       properties:
@@ -336,16 +322,6 @@ components:
         restrict_judges:
           type: boolean
           description: Can anyone create a judge?
-    Result:
-      type: object
-      properties:
-        poll:
-          $ref: '#/components/schemas/Poll'
-        ranking:
-          type: array
-          items:
-            type: integer
-            format: int16
     Error:
       type: object
       properties:
@@ -356,62 +332,82 @@ components:
       required:
         - code
         - message
-  securitySchemes:
-    judgeAuth:
-      type: http
-      scheme: bearer
-    pollAuth:
-      type: http
-      scheme: bearer
-    resultAuth:
-      type: http
-      scheme: bearer
+    Result:
+      type: object
+      properties:
+        poll:
+          $ref: '#/components/schemas/Poll'
+        ranking:
+          type: array
+          items:
+            type: integer
+            format: int16
   links:
-    ResultsByPollId:
-      operationRef: '#/paths/~1polls/~1{poll-id}/results/get'
-      parameters:
-        pollId: '$response.body#/id'
-      description: >
-        The `id` value returned in the response can be used as the `poll-id` parameter in GET /results/{result-id}.
     GetPollByPollId:
       operationRef: '#/paths/~1polls/~1{poll-id}/get'
       parameters:
-        pollId: '$response.body#/id'
+        pollId: $response.body#/id
       description: >
-        The `id` value returned in the response can be used as the `poll-id` parameter in GET /polls/{poll-id}.
+        The `id` value returned in the response can be used as the `poll-id`
+        parameter in GET /polls/{poll-id}.
     SetPollByPollId:
       operationRef: '#/paths/~1polls/~1{poll-id}/patch'
       parameters:
-        pollId: '$response.body#/id'
+        pollId: $response.body#/id
       description: >
-        The `id` value returned in the response can be used as the `poll-id` parameter in PATCH /polls/{poll-id}.
+        The `id` value returned in the response can be used as the `poll-id`
+        parameter in PATCH /polls/{poll-id}.
     DelPollByPollId:
       operationRef: '#/paths/~1polls/~1{poll-id}/delete'
       parameters:
-        pollId: '$response.body#/id'
+        pollId: $response.body#/id
       description: >
-        The `id` value returned in the response can be used as the `poll-id` parameter in DELETE /polls/{poll-id}.
-    GetJudgmentByJudgmentId:
-      operationRef: '#/paths/~1judgments/~1{judgment-id}/get'
-      parameters:
-        judgmentId: '$response.body#/id'
-      description: >
-        The `id` value returned in the response can be used as the `judgment-id` parameter in GET /judgments/{judgment-id}.
-    DelJudgmentByJudgmentId:
-      operationRef: '#/paths/~1judgments/~1{judgment-id}/delete'
-      parameters:
-        judgmentId: '$response.body#/id'
-      description: >
-        The `id` value returned in the response can be used as the `judgment-id` parameter in DELETE /judgments/{judgment-id}.
+        The `id` value returned in the response can be used as the `poll-id`
+        parameter in DELETE /polls/{poll-id}.
     JudgeByPollId:
       operationRef: '#/paths/~1judges/~1{poll-id}/post'
       parameters:
-        userId: '$response.body#/id'
+        userId: $response.body#/id
       description: >
-        The `id` value returned in the response can be used as the `poll-id` parameter in GET /judgments/{poll-id}.
-    InviteByPollId:
-      operationRef: '#/paths/~1polls/~1{poll-id}/judges/post'
+        The `id` value returned in the response can be used as the `poll-id`
+        parameter in GET /judgments/{poll-id}.
+    ResultsByPollId:
+      operationRef: '#/paths/~1polls/~1{poll-id}/results/get'
       parameters:
-        userId: '$response.body#/id'
+        pollId: $response.body#/id
       description: >
-        The `id` value returned in the response can be used as the `poll-id` parameter in GET /invites/{poll-id}.
+        The `id` value returned in the response can be used as the `poll-id`
+        parameter in GET /results/{result-id}.
+    GetJudgmentByJudgmentId:
+      operationRef: '#/paths/~1judgments/~1{judgment-id}/get'
+      parameters:
+        judgmentId: $response.body#/id
+      description: >
+        The `id` value returned in the response can be used as the `judgment-id`
+        parameter in GET /judgments/{judgment-id}.
+    DelJudgmentByJudgmentId:
+      operationRef: '#/paths/~1judgments/~1{judgment-id}/delete'
+      parameters:
+        judgmentId: $response.body#/id
+      description: >
+        The `id` value returned in the response can be used as the `judgment-id`
+        parameter in DELETE /judgments/{judgment-id}.
+  responses:
+    PollNotFound:
+      description: The specified poll was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    JudgmentNotFound:
+      description: The specified judgment was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    JudgeNotFound:
+      description: The specified judge was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
