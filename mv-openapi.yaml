@@ -269,84 +269,113 @@ components:
       type: object
       properties:
         id:
-          type: string
+          type: integer
+          description: A unique identifier
+          example: 4
           readOnly: true
         grade:
-          type: string
+          type: integer
+          description: >-
+            The grade item, according to the grades array defined when creating
+            the poll.
+          example: 2
     candidate:
       type: object
       properties:
         id:
-          type: string
+          type: integer
+          description: A unique identifier.
           readOnly: true
+          example: 4
         name:
           type: string
           description: Unique but short name of the candidate.
+          example: A new school
         judgments:
           type: array
+          description: The judgments received by this candidate.
           items:
             $ref: '#/components/schemas/judgment'
-          description: The judgments received by this candidate.
     grade:
       type: object
       properties:
         id:
-          type: string
+          type: integer
+          description: A unique identifier
+          example: 0
           readOnly: true
         name:
           type: string
           description: 'Unique but short name of the grade, like "Excellent" or "To reject".'
+          example: Excellent
     judge:
       type: object
       properties:
         id:
           type: string
+          description: A unique identifier
+          example: JtRm05yjMAuFCI2uwnFp
           readOnly: true
         has-voted:
-          type: string
+          type: boolean
+          description: 'True if the judge already voted on the poll, False otherwise'
+          example: true
         poll-id:
           type: string
+          description: The identifier of the poll that the judge participates on.
+          example: 1jDe1e5eF_IkaYPuoIYX
         mail:
           type: object
           description: >-
-            Send a mail at the creation of the judge. The mail is not kept in
-            memory.
+            The mail that will eventually created at the creation of the judge
+            (not kept in memory).
+          example: john-doe@example.com
     poll:
       type: object
       properties:
         id:
           type: string
+          description: A unique identifier
+          example: 1jDe1e5eF_IkaYPuoIYX
           readOnly: true
         title:
           type: string
-          description: 'As <title>, I find these candidates:'
+          example: What project should our neighbourhood invest in for the next year?
+          description: The title of the poll
         candidates:
           type: array
+          description: The candidates being judged in a poll.
           minItems: 2
           maxItems: 20
           items:
             $ref: '#/components/schemas/candidate'
-          description: The candidates being judged in a poll.
         grades:
           type: array
+          description: The grades on which one judges a candidate.
+          minItems: 2
+          maxItems: 10
           items:
             $ref: '#/components/schemas/grade'
-          description: The grades on which one judges a candidate.
         judges:
           type: array
+          description: The judges that are allowed to participate to the election.
           items:
             $ref: '#/components/schemas/judge'
-          description: The judges that are allowed to participate to the election.
         restrict_judges:
           type: boolean
-          description: Can anyone create a judge?
+          description: 'True if anyone can participate to this poll, False otherwise.'
+          example: false
     error:
       type: object
       properties:
         code:
           type: string
+          description: The HTTP code of the response
+          example: 404
         message:
           type: string
+          description: The response details
+          example: The specified judge was not found
       required:
         - code
         - message
@@ -357,6 +386,18 @@ components:
           $ref: '#/components/schemas/poll'
         ranking:
           type: array
+          description: >-
+            An array representing grades level for each candidate, according to
+            the grades list, following the order of the candidates array defined
+            when the related poll has been created.
+          example:
+            - 0
+            - 6
+            - 3
+            - 2
+            - 2
+          minItems: 2
+          maxItems: 20
           items:
             type: integer
             format: int16
