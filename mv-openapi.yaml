@@ -1,4 +1,5 @@
-# This file has been automatically generated. All manual modifications may be lost. See README.md for details.
+# Warning: this file has been automatically generated. All manual modifications will be lost, see README.md for details.
+openapi: 3.0.0
 info:
   title: Mieux Voter
   description: A poll application based on Majority Judgment (MJ).
@@ -361,42 +362,42 @@ components:
             format: int16
   links:
     get-poll:
-      operationRef: get-poll
+      operationId: get-poll
       parameters:
         pollId: $response.body#/id
       description: >
         The `id` value returned in the response can be used as the `poll-id`
         parameter in GET /polls/{poll-id}.
     update-poll:
-      operationRef: update-poll
+      operationId: update-poll
       parameters:
         pollId: $response.body#/id
       description: >
         The `id` value returned in the response can be used as the `poll-id`
         parameter in PATCH /polls/{poll-id}.
     delete-poll:
-      operationRef: delete-poll
+      operationId: delete-poll
       parameters:
         pollId: $response.body#/id
       description: >
         The `id` value returned in the response can be used as the `poll-id`
         parameter in DELETE /polls/{poll-id}.
     create-judgment:
-      operationRef: create-judgment
+      operationId: create-judgment
       parameters:
         userId: $response.body#/id
       description: >
         The `id` value returned in the response can be used as the `poll-id`
         parameter in POST /polls/{poll-id}/judgments.
     list-poll-results:
-      operationRef: list-poll-results
+      operationId: list-poll-results
       parameters:
         pollId: $response.body#/id
       description: >
         The `id` value returned in the response can be used as the `poll-id`
         parameter in GET /polls/{poll-id}/results.
     get-judgment:
-      operationRef: get-judgment
+      operationId: get-judgment
       parameters:
         judgmentId: $response.body#/id
       description: >

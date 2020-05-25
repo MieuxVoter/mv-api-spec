@@ -1,4 +1,4 @@
-operationRef: 'delete-poll'
+operationId: 'delete-poll'
 parameters:
   pollId: $response.body#/id
 description: >
