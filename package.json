@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "start": "openapi preview-docs ./openapi/mv-openapi-root.yaml",
-    "build": "openapi bundle --output ./mv-openapi.yaml ./openapi/mv-openapi-root.yaml",
+    "build": "openapi bundle --output ./mv-openapi.yaml ./openapi/mv-openapi-root.yaml && sed -i '1s/^/# Warning: this file has been automatically generated. All manual modifications will be lost, see README.md for details.\\n/' ./mv-openapi.yaml",
     "test": "openapi validate ./openapi/mv-openapi-root.yaml"
   }
 }
