@@ -1,4 +1,4 @@
-operationRef: '#/paths/~1polls/~1{poll-id}/delete'
+operationRef: 'delete-poll'
 parameters:
   pollId: $response.body#/id
 description: >

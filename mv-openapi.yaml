@@ -15,6 +15,7 @@ servers:
 paths:
   /polls:
     get:
+      operationId: get-polls
       summary: Gets all polls.
       responses:
         '200':
@@ -26,6 +27,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Poll'
     post:
+      operationId: create-poll
       summary: Creates a poll.
       requestBody:
         required: true
@@ -66,6 +68,7 @@ paths:
           type: integer
           format: int64
     get:
+      operationId: get-poll
       summary: Gets a poll by ID
       responses:
         '200':
@@ -77,6 +80,7 @@ paths:
         '404':
           $ref: '#/components/responses/PollNotFound'
     patch:
+      operationId: update-poll
       summary: Updates a poll
       requestBody:
         required: true
@@ -97,6 +101,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Poll'
     delete:
+      operationId: delete-poll
       summary: Deletes a poll
       responses:
         '200':
@@ -113,6 +118,7 @@ paths:
         schema:
           type: string
     post:
+      operationId: add-judge-to-poll
       description: Add a judge to a poll
       requestBody:
         content:
@@ -136,6 +142,7 @@ paths:
         schema:
           type: string
     get:
+      operationId: get-poll-results
       description: Get results of a poll
       responses:
         '200':
@@ -154,6 +161,7 @@ paths:
         schema:
           type: string
     post:
+      operationId: create-poll-judgment
       summary: Creates a judgment
       requestBody:
         required: true
@@ -188,6 +196,7 @@ paths:
         schema:
           type: string
     get:
+      operationId: get-poll-judgment
       summary: Gets a judgment by ID
       responses:
         '200':
@@ -197,6 +206,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Judgment'
     delete:
+      operationId: delete-poll-judgment
       summary: Deletes a judgment
       responses:
         '200':
@@ -213,6 +223,7 @@ paths:
         schema:
           type: string
     get:
+      operationId: get-poll-judge
       summary: Get a judge from a poll
       responses:
         '200':
@@ -227,6 +238,7 @@ paths:
         - {}
         - pollAuth: []
     delete:
+      operationId: delete-poll-judge
       summary: Delete a judge from a poll
       responses:
         '200':
@@ -344,49 +356,49 @@ components:
             format: int16
   links:
     GetPollByPollId:
-      operationRef: '#/paths/~1polls/~1{poll-id}/get'
+      operationRef: get-poll
       parameters:
         pollId: $response.body#/id
       description: >
         The `id` value returned in the response can be used as the `poll-id`
         parameter in GET /polls/{poll-id}.
     SetPollByPollId:
-      operationRef: '#/paths/~1polls/~1{poll-id}/patch'
+      operationRef: update-poll
       parameters:
         pollId: $response.body#/id
       description: >
         The `id` value returned in the response can be used as the `poll-id`
         parameter in PATCH /polls/{poll-id}.
     DelPollByPollId:
-      operationRef: '#/paths/~1polls/~1{poll-id}/delete'
+      operationRef: delete-poll
       parameters:
         pollId: $response.body#/id
       description: >
         The `id` value returned in the response can be used as the `poll-id`
         parameter in DELETE /polls/{poll-id}.
     JudgeByPollId:
-      operationRef: '#/paths/~1judges/~1{poll-id}/post'
+      operationRef: create-poll-judgment
       parameters:
         userId: $response.body#/id
       description: >
         The `id` value returned in the response can be used as the `poll-id`
         parameter in GET /judgments/{poll-id}.
     ResultsByPollId:
-      operationRef: '#/paths/~1polls/~1{poll-id}/results/get'
+      operationRef: get-poll-results
       parameters:
         pollId: $response.body#/id
       description: >
         The `id` value returned in the response can be used as the `poll-id`
         parameter in GET /results/{result-id}.
     GetJudgmentByJudgmentId:
-      operationRef: '#/paths/~1judgments/~1{judgment-id}/get'
+      operationRef: get-judgment
       parameters:
         judgmentId: $response.body#/id
       description: >
         The `id` value returned in the response can be used as the `judgment-id`
         parameter in GET /judgments/{judgment-id}.
     DelJudgmentByJudgmentId:
-      operationRef: '#/paths/~1judgments/~1{judgment-id}/delete'
+      operationId: delete-poll-judgment
       parameters:
         judgmentId: $response.body#/id
       description: >

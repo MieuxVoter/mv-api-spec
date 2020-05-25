@@ -5,6 +5,7 @@ parameters:
     schema:
       type: string
 post:
+  operationId: create-poll-judgment
   summary: Creates a judgment
   requestBody:
     required: true

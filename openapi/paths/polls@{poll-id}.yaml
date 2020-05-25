@@ -6,6 +6,7 @@ parameters:
       type: integer
       format: int64
 get:
+  operationId: get-poll
   summary: Gets a poll by ID
   responses:
     '200':
@@ -17,6 +18,7 @@ get:
     '404':
       $ref: ../components/responses/PollNotFound.yaml
 patch:
+  operationId: update-poll
   summary: Updates a poll
   requestBody:
     required: true
@@ -37,6 +39,7 @@ patch:
             items:
               $ref: ../components/schemas/Poll.yaml
 delete:
+  operationId: delete-poll
   summary: Deletes a poll
   responses:
     '200':

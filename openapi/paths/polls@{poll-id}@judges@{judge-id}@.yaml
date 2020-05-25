@@ -5,6 +5,7 @@ parameters:
     schema:
       type: string
 get:
+  operationId: get-poll-judge
   summary: Get a judge from a poll
   responses:
     '200':
@@ -19,6 +20,7 @@ get:
     - {}
     - pollAuth: []
 delete:
+  operationId: delete-poll-judge
   summary: Delete a judge from a poll
   responses:
     '200':

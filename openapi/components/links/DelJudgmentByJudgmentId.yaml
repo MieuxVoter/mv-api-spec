@@ -1,4 +1,4 @@
-operationRef: '#/paths/~1judgments/~1{judgment-id}/delete'
+operationId: 'delete-poll-judgment'
 parameters:
   judgmentId: $response.body#/id
 description: >

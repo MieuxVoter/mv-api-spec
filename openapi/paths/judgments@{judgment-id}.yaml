@@ -5,6 +5,7 @@ parameters:
     schema:
       type: string
 get:
+  operationId: get-poll-judgment
   summary: Gets a judgment by ID
   responses:
     '200':
@@ -14,6 +15,7 @@ get:
           schema:
             $ref: ../components/schemas/Judgment.yaml
 delete:
+  operationId: delete-poll-judgment
   summary: Deletes a judgment
   responses:
     '200':
