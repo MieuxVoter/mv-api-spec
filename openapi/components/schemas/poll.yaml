@@ -19,6 +19,8 @@ properties:
   grades:
     type: array
     description: The grades on which one judges a candidate.
+    minItems: 2
+    maxItems: 10
     items:
       $ref: ./grade.yaml
   judges:
