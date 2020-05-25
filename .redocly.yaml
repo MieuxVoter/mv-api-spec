@@ -2,8 +2,28 @@
 apiDefinitions:
   main: openapi/openapi.yaml
 lint:
+  codeframes: on
   rules:
+    oas3-schema: on
+    path-param-exists: on
+    operation-2xx-response: on
+    unique-parameter-names: on
     no-unused-schemas: warning
+    operation-operationId-unique: on
+    path-declarations-must-exist: on
+
+    camel-case-names: off
+    api-servers: off
+    license-url: off
+    no-extra-fields: off
+    operation-description: off
+    operation-operationId: off
+    operation-tags: off
+    provide-contact: off
+    servers-no-trailing-slash: off
+
+    bundler: off
+    debug-info: off
 referenceDocs:
   htmlTemplate: ./docs/index.html
   theme:
