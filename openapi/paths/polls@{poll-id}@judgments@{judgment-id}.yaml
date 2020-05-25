@@ -1,11 +1,16 @@
 parameters:
   - in: path
+    name: poll-id
+    required: true
+    schema:
+      type: string
+  - in: path
     name: judgment-id
     required: true
     schema:
       type: string
 get:
-  operationId: get-poll-judgment
+  operationId: get-judgment
   summary: Gets a judgment by ID
   responses:
     '200':
@@ -15,7 +20,7 @@ get:
           schema:
             $ref: ../components/schemas/judgment.yaml
 delete:
-  operationId: delete-poll-judgment
+  operationId: delete-judgment
   summary: Deletes a judgment
   responses:
     '200':

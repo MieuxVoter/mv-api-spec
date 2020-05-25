@@ -17,16 +17,16 @@ paths:
     $ref: paths/polls.yaml
   '/polls/{poll-id}':
     $ref: 'paths/polls@{poll-id}.yaml'
-  '/polls/{poll-id}/judges':
-    $ref: 'paths/polls@{poll-id}@judges.yaml'
-  '/polls/{poll-id}/results':
-    $ref: 'paths/polls@{poll-id}@results.yaml'
   '/polls/{poll-id}/judgments':
     $ref: 'paths/polls@{poll-id}@judgments.yaml'
-  '/judgments/{judgment-id}':
-    $ref: 'paths/judgments@{judgment-id}.yaml'
+  '/polls/{poll-id}/judgments/{judgment-id}':
+    $ref: 'paths/polls@{poll-id}@judgments@{judgment-id}.yaml'
+  '/polls/{poll-id}/judges':
+    $ref: 'paths/polls@{poll-id}@judges.yaml'
   '/polls/{poll-id}/judges/{judge-id}/':
     $ref: 'paths/polls@{poll-id}@judges@{judge-id}@.yaml'
+  '/polls/{poll-id}/results':
+    $ref: 'paths/polls@{poll-id}@results.yaml'
 components:
   securitySchemes:
     judgeAuth:
