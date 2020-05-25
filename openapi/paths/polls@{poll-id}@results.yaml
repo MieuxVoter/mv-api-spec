@@ -13,6 +13,6 @@ get:
       content:
         text/plain:
           schema:
-            $ref: ../components/schemas/Result.yaml
+            $ref: ../components/schemas/result.yaml
     '404':
-      $ref: ../components/responses/PollNotFound.yaml
+      $ref: ../components/responses/poll-not-found.yaml

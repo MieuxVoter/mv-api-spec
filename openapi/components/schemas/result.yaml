@@ -1,7 +1,7 @@
 type: object
 properties:
   poll:
-    $ref: ./Poll.yaml
+    $ref: ./poll.yaml
   ranking:
     type: array
     items:

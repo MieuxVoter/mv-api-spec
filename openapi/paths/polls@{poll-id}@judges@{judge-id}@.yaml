@@ -13,9 +13,9 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/Judge.yaml
+            $ref: ../components/schemas/judge.yaml
     '404':
-      $ref: ../components/responses/JudgeNotFound.yaml
+      $ref: ../components/responses/judge-not-found.yaml
   security:
     - {}
     - pollAuth: []
@@ -26,6 +26,6 @@ delete:
     '200':
       description: OK
     '404':
-      $ref: ../components/responses/JudgeNotFound.yaml
+      $ref: ../components/responses/judge-not-found.yaml
   security:
     - pollAuth: []

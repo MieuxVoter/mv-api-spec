@@ -5,14 +5,14 @@ parameters:
     schema:
       type: string
 post:
-  operationId: create-poll-judgment
+  operationId: create-judgment
   summary: Creates a judgment
   requestBody:
     required: true
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/Judgment.yaml
+          $ref: ../components/schemas/judgment.yaml
   security:
     - {}
     - judgeAuth: []

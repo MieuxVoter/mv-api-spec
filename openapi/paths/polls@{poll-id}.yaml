@@ -14,9 +14,9 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/Poll.yaml
+            $ref: ../components/schemas/poll.yaml
     '404':
-      $ref: ../components/responses/PollNotFound.yaml
+      $ref: ../components/responses/poll-not-found.yaml
 patch:
   operationId: update-poll
   summary: Updates a poll
@@ -25,7 +25,7 @@ patch:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/Poll.yaml
+          $ref: ../components/schemas/poll.yaml
   security:
     - {}
     - pollAuth: []
@@ -37,7 +37,7 @@ patch:
           schema:
             type: array
             items:
-              $ref: ../components/schemas/Poll.yaml
+              $ref: ../components/schemas/poll.yaml
 delete:
   operationId: delete-poll
   summary: Deletes a poll
@@ -45,6 +45,6 @@ delete:
     '200':
       description: OK
     '404':
-      $ref: ../components/responses/PollNotFound.yaml
+      $ref: ../components/responses/poll-not-found.yaml
   security:
     - pollAuth: []

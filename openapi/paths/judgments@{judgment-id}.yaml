@@ -13,7 +13,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/Judgment.yaml
+            $ref: ../components/schemas/judgment.yaml
 delete:
   operationId: delete-poll-judgment
   summary: Deletes a judgment
@@ -21,6 +21,6 @@ delete:
     '200':
       description: OK
     '404':
-      $ref: ../components/responses/JudgmentNotFound.yaml
+      $ref: ../components/responses/judgment-not-found.yaml
   security:
     - judgeAuth: []
