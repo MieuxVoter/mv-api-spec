@@ -1,4 +1,4 @@
-operationId: 'delete-poll-judgment'
+operationId: 'delete-judgment'
 parameters:
   judgmentId: $response.body#/id
 description: >

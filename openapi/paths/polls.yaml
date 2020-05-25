@@ -31,15 +31,15 @@ post:
                 type: string
                 description: Id of the created poll.
       links:
-        GetPollByPollId:
-          $ref: ../components/links/GetPollByPollId.yaml
-        SetPollByPollId:
-          $ref: ../components/links/SetPollByPollId.yaml
-        DelPollByPollId:
-          $ref: ../components/links/DelPollByPollId.yaml
-        JudgeByPollId:
-          $ref: ../components/links/JudgeByPollId.yaml
-        ResultsByPollId:
-          $ref: ../components/links/ResultsByPollId.yaml
+        get-poll:
+          $ref: ../components/links/get-poll.yaml
+        update-poll:
+          $ref: ../components/links/update-poll.yaml
+        delete-poll:
+          $ref: ../components/links/delete-poll.yaml
+        create-judgment:
+          $ref: ../components/links/create-judgment.yaml
+        list-poll-results:
+          $ref: ../components/links/list-poll-results.yaml
     '400':
       description: Bad Request. Expect at least 2 candidates and a title.

@@ -1,4 +1,4 @@
-operationRef: 'create-poll-judgment'
+operationRef: 'create-judgment'
 parameters:
   userId: $response.body#/id
 description: >
