@@ -2,7 +2,7 @@
 openapi: 3.0.0
 info:
   title: Mieux Voter
-  description: A poll application based on Majority Judgment (MJ).
+  description: A poll application based on Majority Judgment.
   version: 1.0.1-oas3
   termsOfService: 'https://github.com/MieuxVoter'
   contact:
@@ -54,8 +54,8 @@ paths:
               $ref: '#/components/links/update-poll'
             delete-poll:
               $ref: '#/components/links/delete-poll'
-            create-judgment:
-              $ref: '#/components/links/create-judgment'
+            create-ballot:
+              $ref: '#/components/links/create-ballot'
             list-poll-results:
               $ref: '#/components/links/list-poll-results'
         '400':
@@ -111,7 +111,7 @@ paths:
           $ref: '#/components/responses/poll-not-found'
       security:
         - pollAuth: []
-  '/polls/{poll-id}/judgments':
+  '/polls/{poll-id}/ballots':
     parameters:
       - in: path
         name: poll-id
@@ -119,14 +119,14 @@ paths:
         schema:
           type: string
     post:
-      operationId: create-judgment
-      summary: Creates a judgment
+      operationId: create-ballot
+      summary: Creates a ballot
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/judgment'
+              $ref: '#/components/schemas/ballot'
       security:
         - {}
         - judgeAuth: []
@@ -140,13 +140,13 @@ paths:
                 properties:
                   id:
                     type: string
-                    description: Id of the created judgment.
+                    description: Id of the created ballot.
           links:
-            get-judgment:
-              $ref: '#/components/links/get-judgment'
-            delete-judgment:
-              $ref: '#/components/links/delete-judgment'
-  '/polls/{poll-id}/judgments/{judgment-id}':
+            get-ballot:
+              $ref: '#/components/links/get-ballot'
+            delete-ballot:
+              $ref: '#/components/links/delete-ballot'
+  '/polls/{poll-id}/ballots/{ballot-id}':
     parameters:
       - in: path
         name: poll-id
@@ -154,28 +154,28 @@ paths:
         schema:
           type: string
       - in: path
-        name: judgment-id
+        name: ballot-id
         required: true
         schema:
           type: string
     get:
-      operationId: get-judgment
-      summary: Gets a judgment by ID
+      operationId: get-ballot
+      summary: Gets a ballot by ID
       responses:
         '200':
-          description: A judgment object
+          description: A ballot object
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/judgment'
+                $ref: '#/components/schemas/ballot'
     delete:
-      operationId: delete-judgment
-      summary: Deletes a judgment
+      operationId: delete-ballot
+      summary: Deletes a ballot
       responses:
         '200':
           description: OK
         '404':
-          $ref: '#/components/responses/judgment-not-found'
+          $ref: '#/components/responses/ballot-not-found'
       security:
         - judgeAuth: []
   '/polls/{poll-id}/judges':
@@ -265,7 +265,7 @@ components:
       type: http
       scheme: bearer
   schemas:
-    judgment:
+    ballot:
       type: object
       properties:
         id:
@@ -291,11 +291,11 @@ components:
           type: string
           description: Unique but short name of the candidate.
           example: A new school
-        judgments:
+        ballots:
           type: array
-          description: The judgments received by this candidate.
+          description: The ballots received by this candidate.
           items:
-            $ref: '#/components/schemas/judgment'
+            $ref: '#/components/schemas/ballot'
     grade:
       type: object
       properties:
@@ -423,13 +423,13 @@ components:
       description: >
         The `id` value returned in the response can be used as the `poll-id`
         parameter in DELETE /polls/{poll-id}.
-    create-judgment:
-      operationId: create-judgment
+    create-ballot:
+      operationId: create-ballot
       parameters:
         userId: $response.body#/id
       description: >
         The `id` value returned in the response can be used as the `poll-id`
-        parameter in POST /polls/{poll-id}/judgments.
+        parameter in POST /polls/{poll-id}/ballots.
     list-poll-results:
       operationId: list-poll-results
       parameters:
@@ -437,20 +437,20 @@ components:
       description: >
         The `id` value returned in the response can be used as the `poll-id`
         parameter in GET /polls/{poll-id}/results.
-    get-judgment:
-      operationId: get-judgment
+    get-ballot:
+      operationId: get-ballot
       parameters:
-        judgmentId: $response.body#/id
+        ballotId: $response.body#/id
       description: >
-        The `id` value returned in the response can be used as the `judgment-id`
-        parameter in GET /polls/{poll-id}/judgments/{judgment-id}.
-    delete-judgment:
-      operationId: delete-judgment
+        The `id` value returned in the response can be used as the `ballot-id`
+        parameter in GET /polls/{poll-id}/ballots/{ballot-id}.
+    delete-ballot:
+      operationId: delete-ballot
       parameters:
-        judgmentId: $response.body#/id
+        ballotId: $response.body#/id
       description: >
-        The `id` value returned in the response can be used as the `judgment-id`
-        parameter in DELETE /polls/{poll-id}/judgments/{judgment-id}.
+        The `id` value returned in the response can be used as the `ballot-id`
+        parameter in DELETE /polls/{poll-id}/ballots/{ballot-id}.
   responses:
     poll-not-found:
       description: The specified poll was not found
@@ -458,8 +458,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/error'
-    judgment-not-found:
-      description: The specified judgment was not found
+    ballot-not-found:
+      description: The specified ballot was not found
       content:
         application/json:
           schema:
