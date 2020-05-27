@@ -9,16 +9,16 @@ properties:
     type: string
     example: 'What project should our neighbourhood invest in for the next year?'
     description: 'The title of the poll'
-  candidates:
+  proposals:
     type: array
-    description: The candidates being voted in a poll.
+    description: The proposals being voted in a poll.
     minItems: 2
     maxItems: 20
     items:
-      $ref: ./candidate.yaml
+      $ref: ./proposal.yaml
   mentions:
     type: array
-    description: The mentions on which one participant vote to a candidate.
+    description: The mentions on which one participant vote to a proposal.
     minItems: 2
     maxItems: 10
     items:

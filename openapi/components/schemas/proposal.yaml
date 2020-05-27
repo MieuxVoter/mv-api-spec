@@ -7,10 +7,10 @@ properties:
     example: 4
   name:
     type: string
-    description: Unique but short name of the candidate.
+    description: Unique but short name of the proposal.
     example: A new school
   ballots:
     type: array
-    description: The ballots received by this candidate.
+    description: The ballots received by this proposal.
     items:
       $ref: ./ballot.yaml

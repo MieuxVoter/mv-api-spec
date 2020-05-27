@@ -4,8 +4,8 @@ properties:
     $ref: ./poll.yaml
   ranking:
     type: array
-    description: An array representing mentions level for each candidate,
-      according to the mentions list, following the order of the candidates array
+    description: An array representing mentions level for each proposal,
+      according to the mentions list, following the order of the proposals array
       defined when the related poll has been created.
     example: [0, 6, 3, 2, 2]
     minItems: 2
