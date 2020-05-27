@@ -129,7 +129,7 @@ paths:
               $ref: '#/components/schemas/ballot'
       security:
         - {}
-        - judgeAuth: []
+        - participantAuth: []
       responses:
         '201':
           description: Created
@@ -177,8 +177,8 @@ paths:
         '404':
           $ref: '#/components/responses/ballot-not-found'
       security:
-        - judgeAuth: []
-  '/polls/{poll-id}/judges':
+        - participantAuth: []
+  '/polls/{poll-id}/participants':
     parameters:
       - in: path
         name: poll-id
@@ -186,13 +186,13 @@ paths:
         schema:
           type: string
     post:
-      operationId: add-judge-to-poll
-      description: Add a judge to a poll
+      operationId: add-participant-to-poll
+      description: Add a participant to a poll
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/judge'
+              $ref: '#/components/schemas/participant'
       responses:
         '200':
           description: Invitation was sent
@@ -202,36 +202,36 @@ paths:
                 type: string
         '404':
           $ref: '#/components/responses/poll-not-found'
-  '/polls/{poll-id}/judges/{judge-id}/':
+  '/polls/{poll-id}/participants/{participant-id}/':
     parameters:
       - in: path
-        name: judge-id
+        name: participant-id
         required: true
         schema:
           type: string
     get:
-      operationId: get-poll-judge
-      summary: Get a judge from a poll
+      operationId: get-poll-participant
+      summary: Get a participant from a poll
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/judge'
+                $ref: '#/components/schemas/participant'
         '404':
-          $ref: '#/components/responses/judge-not-found'
+          $ref: '#/components/responses/participant-not-found'
       security:
         - {}
         - pollAuth: []
     delete:
-      operationId: delete-poll-judge
-      summary: Delete a judge from a poll
+      operationId: delete-poll-participant
+      summary: Delete a participant from a poll
       responses:
         '200':
           description: OK
         '404':
-          $ref: '#/components/responses/judge-not-found'
+          $ref: '#/components/responses/participant-not-found'
       security:
         - pollAuth: []
   '/polls/{poll-id}/results':
@@ -255,7 +255,7 @@ paths:
           $ref: '#/components/responses/poll-not-found'
 components:
   securitySchemes:
-    judgeAuth:
+    participantAuth:
       type: http
       scheme: bearer
     pollAuth:
@@ -308,7 +308,7 @@ components:
           type: string
           description: 'Unique but short name of the grade, like "Excellent" or "To reject".'
           example: Excellent
-    judge:
+    participant:
       type: object
       properties:
         id:
@@ -318,17 +318,19 @@ components:
           readOnly: true
         has-participed:
           type: boolean
-          description: 'True if the judge already participed to the poll, False otherwise'
+          description: >-
+            True if the participant already participed to the poll, False
+            otherwise
           example: true
         poll-id:
           type: string
-          description: The identifier of the poll that the judge participates on.
+          description: The identifier of the poll that the participant participates on.
           example: 1jDe1e5eF_IkaYPuoIYX
         mail:
           type: object
           description: >-
-            The mail that will eventually created at the creation of the judge
-            (not kept in memory).
+            The mail that will eventually created at the creation of the
+            participant (not kept in memory).
           example: john-doe@example.com
     poll:
       type: object
@@ -344,24 +346,24 @@ components:
           description: The title of the poll
         candidates:
           type: array
-          description: The candidates being judged in a poll.
+          description: The candidates being voted in a poll.
           minItems: 2
           maxItems: 20
           items:
             $ref: '#/components/schemas/candidate'
         grades:
           type: array
-          description: The grades on which one judges a candidate.
+          description: The grades on which one vote to a candidate.
           minItems: 2
           maxItems: 10
           items:
             $ref: '#/components/schemas/grade'
-        judges:
+        participants:
           type: array
-          description: The judges that are allowed to participate to the election.
+          description: The participants that are allowed to participate to the election.
           items:
-            $ref: '#/components/schemas/judge'
-        restrict_judges:
+            $ref: '#/components/schemas/participant'
+        restrict_participants:
           type: boolean
           description: 'True if anyone can participate to this poll, False otherwise.'
           example: false
@@ -375,7 +377,7 @@ components:
         message:
           type: string
           description: The response details
-          example: The specified judge was not found
+          example: The specified participant was not found
       required:
         - code
         - message
@@ -464,8 +466,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/error'
-    judge-not-found:
-      description: The specified judge was not found
+    participant-not-found:
+      description: The specified participant was not found
       content:
         application/json:
           schema:

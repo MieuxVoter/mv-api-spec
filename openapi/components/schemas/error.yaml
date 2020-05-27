@@ -7,7 +7,7 @@ properties:
   message:
     type: string
     description: The response details
-    example: The specified judge was not found
+    example: The specified participant was not found
 required:
   - code
   - message

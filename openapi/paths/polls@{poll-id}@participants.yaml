@@ -5,13 +5,13 @@ parameters:
     schema:
       type: string
 post:
-  operationId: add-judge-to-poll
-  description: Add a judge to a poll
+  operationId: add-participant-to-poll
+  description: Add a participant to a poll
   requestBody:
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/judge.yaml
+          $ref: ../components/schemas/participant.yaml
   responses:
     '200':
       description: Invitation was sent
