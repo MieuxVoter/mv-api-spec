@@ -7,5 +7,5 @@ properties:
     readOnly: true
   name:
     type: string
-    description: Unique but short name of the grade, like "Excellent" or "To reject".
+    description: Unique but short name of the mention, like "Excellent" or "To reject".
     example: Excellent

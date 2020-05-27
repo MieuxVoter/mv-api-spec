@@ -273,11 +273,11 @@ components:
           description: A unique identifier
           example: 4
           readOnly: true
-        grade:
+        mention:
           type: integer
           description: >-
-            The grade item, according to the grades array defined when creating
-            the poll.
+            The mention item, according to the mentions array defined when
+            creating the poll.
           example: 2
     candidate:
       type: object
@@ -296,7 +296,7 @@ components:
           description: The ballots received by this candidate.
           items:
             $ref: '#/components/schemas/ballot'
-    grade:
+    mention:
       type: object
       properties:
         id:
@@ -306,7 +306,9 @@ components:
           readOnly: true
         name:
           type: string
-          description: 'Unique but short name of the grade, like "Excellent" or "To reject".'
+          description: >-
+            Unique but short name of the mention, like "Excellent" or "To
+            reject".
           example: Excellent
     participant:
       type: object
@@ -351,13 +353,13 @@ components:
           maxItems: 20
           items:
             $ref: '#/components/schemas/candidate'
-        grades:
+        mentions:
           type: array
-          description: The grades on which one vote to a candidate.
+          description: The mentions on which one vote to a candidate.
           minItems: 2
           maxItems: 10
           items:
-            $ref: '#/components/schemas/grade'
+            $ref: '#/components/schemas/mention'
         participants:
           type: array
           description: The participants that are allowed to participate to the election.
@@ -389,9 +391,9 @@ components:
         ranking:
           type: array
           description: >-
-            An array representing grades level for each candidate, according to
-            the grades list, following the order of the candidates array defined
-            when the related poll has been created.
+            An array representing mentions level for each candidate, according
+            to the mentions list, following the order of the candidates array
+            defined when the related poll has been created.
           example:
             - 0
             - 6
