@@ -1,0 +1,31 @@
+parameters:
+  - in: path
+    name: participant-id
+    required: true
+    schema:
+      type: string
+get:
+  operationId: get-poll-participant
+  summary: Get a participant from a poll
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/participant.yaml
+    '404':
+      $ref: ../components/responses/participant-not-found.yaml
+  security:
+    - {}
+    - pollAuth: []
+delete:
+  operationId: delete-poll-participant
+  summary: Delete a participant from a poll
+  responses:
+    '200':
+      description: OK
+    '404':
+      $ref: ../components/responses/participant-not-found.yaml
+  security:
+    - pollAuth: []

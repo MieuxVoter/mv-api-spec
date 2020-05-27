@@ -23,12 +23,12 @@ properties:
     maxItems: 10
     items:
       $ref: ./grade.yaml
-  judges:
+  participants:
     type: array
-    description: The judges that are allowed to participate to the election.
+    description: The participants that are allowed to participate to the election.
     items:
-      $ref: ./judge.yaml
-  restrict_judges:
+      $ref: ./participant.yaml
+  restrict_participants:
     type: boolean
     description: True if anyone can participate to this poll, False otherwise.
     example: false

@@ -21,15 +21,15 @@ paths:
     $ref: 'paths/polls@{poll-id}@ballots.yaml'
   '/polls/{poll-id}/ballots/{ballot-id}':
     $ref: 'paths/polls@{poll-id}@ballots@{ballot-id}.yaml'
-  '/polls/{poll-id}/judges':
-    $ref: 'paths/polls@{poll-id}@judges.yaml'
-  '/polls/{poll-id}/judges/{judge-id}/':
-    $ref: 'paths/polls@{poll-id}@judges@{judge-id}@.yaml'
+  '/polls/{poll-id}/participants':
+    $ref: 'paths/polls@{poll-id}@participants.yaml'
+  '/polls/{poll-id}/participants/{participant-id}/':
+    $ref: 'paths/polls@{poll-id}@participants@{participant-id}@.yaml'
   '/polls/{poll-id}/results':
     $ref: 'paths/polls@{poll-id}@results.yaml'
 components:
   securitySchemes:
-    judgeAuth:
+    participantAuth:
       type: http
       scheme: bearer
     pollAuth:

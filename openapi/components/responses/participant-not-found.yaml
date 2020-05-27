@@ -1,4 +1,4 @@
-description: The specified judge was not found
+description: The specified participant was not found
 content:
   application/json:
     schema:

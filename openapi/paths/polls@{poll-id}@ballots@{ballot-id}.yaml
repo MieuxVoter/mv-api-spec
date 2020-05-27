@@ -28,4 +28,4 @@ delete:
     '404':
       $ref: ../components/responses/ballot-not-found.yaml
   security:
-    - judgeAuth: []
+    - participantAuth: []

@@ -1,6 +1,6 @@
-operationId: 'add-judge-to-poll'
+operationId: 'add-participant-to-poll'
 parameters:
   userId: $response.body#/id
 description: >
   The `id` value returned in the response can be used as the `poll-id` parameter
-  in POST /polls/{poll-id}/judges.
+  in POST /polls/{poll-id}/participants.

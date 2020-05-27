@@ -7,13 +7,13 @@ properties:
     readOnly: true
   has-participed:
     type: boolean
-    description: True if the judge already participed to the poll, False otherwise
+    description: True if the participant already participed to the poll, False otherwise
     example: true
   poll-id:
     type: string
-    description: The identifier of the poll that the judge participates on.
+    description: The identifier of the poll that the participant participates on.
     example: '1jDe1e5eF_IkaYPuoIYX'
   mail:
     type: object
-    description: The mail that will eventually created at the creation of the judge (not kept in memory).
+    description: The mail that will eventually created at the creation of the participant (not kept in memory).
     example: john-doe@example.com
