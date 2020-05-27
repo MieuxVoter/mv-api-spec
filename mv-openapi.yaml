@@ -59,7 +59,7 @@ paths:
             list-poll-results:
               $ref: '#/components/links/list-poll-results'
         '400':
-          description: Bad Request. Expect at least 2 candidates and a title.
+          description: Bad Request. Expect at least 2 proposals and a title.
   '/polls/{poll-id}':
     parameters:
       - in: path
@@ -279,7 +279,7 @@ components:
             The mention item, according to the mentions array defined when
             creating the poll.
           example: 2
-    candidate:
+    proposal:
       type: object
       properties:
         id:
@@ -289,11 +289,11 @@ components:
           example: 4
         name:
           type: string
-          description: Unique but short name of the candidate.
+          description: Unique but short name of the proposal.
           example: A new school
         ballots:
           type: array
-          description: The ballots received by this candidate.
+          description: The ballots received by this proposal.
           items:
             $ref: '#/components/schemas/ballot'
     mention:
@@ -346,16 +346,16 @@ components:
           type: string
           example: What project should our neighbourhood invest in for the next year?
           description: The title of the poll
-        candidates:
+        proposals:
           type: array
-          description: The candidates being voted in a poll.
+          description: The proposals being voted in a poll.
           minItems: 2
           maxItems: 20
           items:
-            $ref: '#/components/schemas/candidate'
+            $ref: '#/components/schemas/proposal'
         mentions:
           type: array
-          description: The mentions on which one vote to a candidate.
+          description: The mentions on which one participant vote to a proposal.
           minItems: 2
           maxItems: 10
           items:
@@ -391,8 +391,8 @@ components:
         ranking:
           type: array
           description: >-
-            An array representing mentions level for each candidate, according
-            to the mentions list, following the order of the candidates array
+            An array representing mentions level for each proposal, according to
+            the mentions list, following the order of the proposals array
             defined when the related poll has been created.
           example:
             - 0

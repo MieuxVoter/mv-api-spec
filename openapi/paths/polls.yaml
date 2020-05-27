@@ -42,4 +42,4 @@ post:
         list-poll-results:
           $ref: ../components/links/list-poll-results.yaml
     '400':
-      description: Bad Request. Expect at least 2 candidates and a title.
+      description: Bad Request. Expect at least 2 proposals and a title.
