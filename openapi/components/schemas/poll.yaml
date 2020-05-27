@@ -16,13 +16,13 @@ properties:
     maxItems: 20
     items:
       $ref: ./candidate.yaml
-  grades:
+  mentions:
     type: array
-    description: The grades on which one vote to a candidate.
+    description: The mentions on which one participant vote to a candidate.
     minItems: 2
     maxItems: 10
     items:
-      $ref: ./grade.yaml
+      $ref: ./mention.yaml
   participants:
     type: array
     description: The participants that are allowed to participate to the election.

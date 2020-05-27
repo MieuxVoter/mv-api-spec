@@ -5,7 +5,7 @@ properties:
     description: A unique identifier
     example: 4
     readOnly: true
-  grade:
+  mention:
     type: integer
-    description: The grade item, according to the grades array defined when creating the poll.
+    description: The mention item, according to the mentions array defined when creating the poll.
     example: 2
