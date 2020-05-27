@@ -9,8 +9,8 @@ properties:
     type: string
     description: Unique but short name of the candidate.
     example: A new school
-  judgments:
+  ballots:
     type: array
-    description: The judgments received by this candidate.
+    description: The ballots received by this candidate.
     items:
-      $ref: ./judgment.yaml
+      $ref: ./ballot.yaml

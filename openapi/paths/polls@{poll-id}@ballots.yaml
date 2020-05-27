@@ -5,14 +5,14 @@ parameters:
     schema:
       type: string
 post:
-  operationId: create-judgment
-  summary: Creates a judgment
+  operationId: create-ballot
+  summary: Creates a ballot
   requestBody:
     required: true
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/judgment.yaml
+          $ref: ../components/schemas/ballot.yaml
   security:
     - {}
     - judgeAuth: []
@@ -26,9 +26,9 @@ post:
             properties:
               id:
                 type: string
-                description: Id of the created judgment.
+                description: Id of the created ballot.
       links:
-        get-judgment:
-          $ref: ../components/links/get-judgment.yaml
-        delete-judgment:
-          $ref: ../components/links/delete-judgment.yaml
+        get-ballot:
+          $ref: ../components/links/get-ballot.yaml
+        delete-ballot:
+          $ref: ../components/links/delete-ballot.yaml

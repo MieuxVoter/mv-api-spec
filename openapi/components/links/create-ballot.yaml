@@ -1,6 +1,6 @@
-operationId: 'create-judgment'
+operationId: 'create-ballot'
 parameters:
   userId: $response.body#/id
 description: >
   The `id` value returned in the response can be used as the `poll-id` parameter
-  in POST /polls/{poll-id}/judgments.
+  in POST /polls/{poll-id}/ballots.

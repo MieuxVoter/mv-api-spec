@@ -5,27 +5,27 @@ parameters:
     schema:
       type: string
   - in: path
-    name: judgment-id
+    name: ballot-id
     required: true
     schema:
       type: string
 get:
-  operationId: get-judgment
-  summary: Gets a judgment by ID
+  operationId: get-ballot
+  summary: Gets a ballot by ID
   responses:
     '200':
-      description: A judgment object
+      description: A ballot object
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/judgment.yaml
+            $ref: ../components/schemas/ballot.yaml
 delete:
-  operationId: delete-judgment
-  summary: Deletes a judgment
+  operationId: delete-ballot
+  summary: Deletes a ballot
   responses:
     '200':
       description: OK
     '404':
-      $ref: ../components/responses/judgment-not-found.yaml
+      $ref: ../components/responses/ballot-not-found.yaml
   security:
     - judgeAuth: []

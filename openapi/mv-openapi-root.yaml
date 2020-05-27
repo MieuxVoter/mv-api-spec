@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Mieux Voter
-  description: A poll application based on Majority Judgment (MJ).
+  description: A poll application based on Majority Judgment.
   version: 1.0.1-oas3
   termsOfService: 'https://github.com/MieuxVoter'
   contact:
@@ -17,10 +17,10 @@ paths:
     $ref: paths/polls.yaml
   '/polls/{poll-id}':
     $ref: 'paths/polls@{poll-id}.yaml'
-  '/polls/{poll-id}/judgments':
-    $ref: 'paths/polls@{poll-id}@judgments.yaml'
-  '/polls/{poll-id}/judgments/{judgment-id}':
-    $ref: 'paths/polls@{poll-id}@judgments@{judgment-id}.yaml'
+  '/polls/{poll-id}/ballots':
+    $ref: 'paths/polls@{poll-id}@ballots.yaml'
+  '/polls/{poll-id}/ballots/{ballot-id}':
+    $ref: 'paths/polls@{poll-id}@ballots@{ballot-id}.yaml'
   '/polls/{poll-id}/judges':
     $ref: 'paths/polls@{poll-id}@judges.yaml'
   '/polls/{poll-id}/judges/{judge-id}/':

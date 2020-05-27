@@ -37,8 +37,8 @@ post:
           $ref: ../components/links/update-poll.yaml
         delete-poll:
           $ref: ../components/links/delete-poll.yaml
-        create-judgment:
-          $ref: ../components/links/create-judgment.yaml
+        create-ballot:
+          $ref: ../components/links/create-ballot.yaml
         list-poll-results:
           $ref: ../components/links/list-poll-results.yaml
     '400':
