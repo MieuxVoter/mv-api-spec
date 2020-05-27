@@ -5,9 +5,9 @@ properties:
     description: A unique identifier
     example: JtRm05yjMAuFCI2uwnFp
     readOnly: true
-  has-voted:
+  has-participed:
     type: boolean
-    description: True if the judge already voted on the poll, False otherwise
+    description: True if the judge already participed to the poll, False otherwise
     example: true
   poll-id:
     type: string

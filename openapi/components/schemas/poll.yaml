@@ -11,14 +11,14 @@ properties:
     description: 'The title of the poll'
   candidates:
     type: array
-    description: The candidates being judged in a poll.
+    description: The candidates being voted in a poll.
     minItems: 2
     maxItems: 20
     items:
       $ref: ./candidate.yaml
   grades:
     type: array
-    description: The grades on which one judges a candidate.
+    description: The grades on which one vote to a candidate.
     minItems: 2
     maxItems: 10
     items:
