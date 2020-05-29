@@ -5,6 +5,10 @@ properties:
     description: A unique identifier
     example: JtRm05yjMAuFCI2uwnFp
     readOnly: true
+  description:
+    type: string
+    description: An optional description of the participant
+    example: John Doe
   has-participed:
     type: boolean
     description: True if the participant already participed to the poll, False otherwise
@@ -12,7 +16,7 @@ properties:
   poll-id:
     type: string
     description: The identifier of the poll that the participant participates on.
-    example: '1jDe1e5eF_IkaYPuoIYX'
+    example: 1jDe1e5eF_IkaYPuoIYX
   mail:
     type: object
     description: The mail that will eventually created at the creation of the participant (not kept in memory).

@@ -14,3 +14,7 @@ properties:
     description: The ballots received by this proposal.
     items:
       $ref: ./ballot.yaml
+  description:
+    type: string
+    description: An optional description of the proposal
+    example: This school would welcome 500 pupils.
