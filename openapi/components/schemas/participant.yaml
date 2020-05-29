@@ -18,6 +18,6 @@ properties:
     description: The identifier of the poll that the participant participates on.
     example: 1jDe1e5eF_IkaYPuoIYX
   mail:
-    type: object
+    type: string    
     description: The mail that will eventually created at the creation of the participant (not kept in memory).
     example: john-doe@example.com
