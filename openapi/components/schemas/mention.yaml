@@ -9,3 +9,7 @@ properties:
     type: string
     description: Unique but short name of the mention, like "Excellent" or "To reject".
     example: Excellent
+  description:
+    type: string
+    description: An optional description of the mention
+    example: In this poll, the mention "To reject" disqualifies the proposal.

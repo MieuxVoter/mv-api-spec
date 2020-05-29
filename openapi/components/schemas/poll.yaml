@@ -2,13 +2,17 @@ type: object
 properties:
   id:
     type: string
-    description: 'A unique identifier'
-    example: '1jDe1e5eF_IkaYPuoIYX'
+    description: A unique identifier
+    example: 1jDe1e5eF_IkaYPuoIYX
     readOnly: true
   title:
     type: string
-    example: 'What project should our neighbourhood invest in for the next year?'
-    description: 'The title of the poll'
+    example: What project should our neighbourhood invest in for the next year?
+    description: The title of the poll
+  description:
+    type: string
+    description: A description of the poll
+    example: 
   proposals:
     type: array
     description: The proposals being voted in a poll.
