@@ -1,5 +1,9 @@
 # Mieux Voter OpenAPI Definition
 
+TODO:
+CI on Jenkins
+
+
 ## Working on your OpenAPI Definition
 
 ### Install
