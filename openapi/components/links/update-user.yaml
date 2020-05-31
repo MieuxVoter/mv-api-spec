@@ -1,0 +1,6 @@
+operationId: 'update-user'
+parameters:
+  userId: $response.body#/id
+description: >
+  The `id` value returned in the response can be used as the `user-id` parameter
+  in PATCH /users/{user-id}.

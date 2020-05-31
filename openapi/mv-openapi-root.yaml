@@ -27,6 +27,10 @@ paths:
     $ref: 'paths/polls@{poll-id}@participants@{participant-id}@.yaml'
   '/polls/{poll-id}/results':
     $ref: 'paths/polls@{poll-id}@results.yaml'
+  /users:
+    $ref: paths/users.yaml
+  '/users/{user-id}':
+    $ref: 'paths/users@{user-id}.yaml'
 components:
   securitySchemes:
     participantAuth:
@@ -36,5 +40,8 @@ components:
       type: http
       scheme: bearer
     resultAuth:
+      type: http
+      scheme: bearer
+    userAuth:
       type: http
       scheme: bearer

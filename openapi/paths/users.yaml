@@ -1,0 +1,45 @@
+get:
+  operationId: get-polls
+  summary: Gets all polls.
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/poll.yaml
+post:
+  operationId: create-poll
+  summary: Creates a poll.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/poll.yaml
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Id of the created poll.
+      links:
+        get-poll:
+          $ref: ../components/links/get-poll.yaml
+        update-poll:
+          $ref: ../components/links/update-poll.yaml
+        delete-poll:
+          $ref: ../components/links/delete-poll.yaml
+        create-ballot:
+          $ref: ../components/links/create-ballot.yaml
+        list-poll-results:
+          $ref: ../components/links/list-poll-results.yaml
+    '400':
+      description: Bad Request. Expect at least 2 proposals and a title.

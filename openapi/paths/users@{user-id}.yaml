@@ -1,0 +1,50 @@
+parameters:
+  - in: path
+    name: user-id
+    required: true
+    schema:
+      type: integer
+      format: int64
+get:
+  operationId: get-user
+  summary: Gets a user by ID
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/user.yaml
+    '404':
+      $ref: ../components/responses/user-not-found.yaml
+patch:
+  operationId: update-user
+  summary: Updates a user
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/user.yaml
+  security:
+    - {}
+    - userAuth: []
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/user.yaml
+delete:
+  operationId: delete-user
+  summary: Deletes a user
+  responses:
+    '200':
+      description: OK
+    '404':
+      $ref: ../components/responses/user-not-found.yaml
+  security:
+    - userAuth: []

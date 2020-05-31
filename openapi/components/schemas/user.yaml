@@ -1,0 +1,15 @@
+type: object
+properties:
+  id:
+    type: integer
+    description: A unique identifier
+    example: 0
+    readOnly: true
+  name:
+    type: string
+    description: Unique user-name
+    example: john.doe
+  description:
+    type: string
+    description: An optional description of the user
+    example: John Doe is a multiple-use name that is used when the true name of a person is unknown or is being intentionally concealed
