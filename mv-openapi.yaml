@@ -394,6 +394,8 @@ components:
           type: string
           description: An optional description of the proposal
           example: This school would welcome 500 pupils.
+      required:
+        - name
     mention:
       type: object
       properties:
@@ -412,27 +414,33 @@ components:
           type: string
           description: An optional description of the mention
           example: 'In this poll, the mention *To reject* disqualifies the proposal.'
+      required:
+        - name
     participant:
       type: object
       properties:
         id:
           type: string
-          description: A unique identifier
+          description: A unique identifier.
           example: JtRm05yjMAuFCI2uwnFp
           readOnly: true
         description:
           type: string
-          description: An optional description of the participant
+          description: An optional description of the participant.
           example: John Doe
         has-participed:
           type: boolean
           description: >-
             True if the participant already participed to the poll, False
-            otherwise
+            otherwise.
           example: true
         poll-id:
           type: string
           description: The identifier of the poll that the participant participates on.
+          example: 1jDe1e5eF_IkaYPuoIYX
+        user-id:
+          type: string
+          description: The identifier of the user.
           example: 1jDe1e5eF_IkaYPuoIYX
         mail:
           type: string
@@ -440,6 +448,8 @@ components:
             The mail that will eventually created at the creation of the
             participant (not kept in memory).
           example: john-doe@example.com
+      required:
+        - poll-id
     poll:
       type: object
       properties:
@@ -482,6 +492,9 @@ components:
           type: boolean
           description: 'True if anyone can participate to this poll, False otherwise.'
           example: false
+      required:
+        - title
+        - proposals
     error:
       type: object
       properties:
@@ -518,6 +531,9 @@ components:
           items:
             type: integer
             format: int16
+      required:
+        - ranking
+        - poll
     user:
       type: object
       properties:

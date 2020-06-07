@@ -18,3 +18,5 @@ properties:
     type: string
     description: An optional description of the proposal
     example: This school would welcome 500 pupils.
+required:
+  - name

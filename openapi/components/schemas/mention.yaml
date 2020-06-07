@@ -13,3 +13,5 @@ properties:
     type: string
     description: An optional description of the mention
     example: In this poll, the mention *To reject* disqualifies the proposal.
+required:
+  - name

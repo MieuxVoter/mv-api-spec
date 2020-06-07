@@ -13,3 +13,6 @@ properties:
     items:
       type: integer
       format: int16
+required:
+  - ranking
+  - poll

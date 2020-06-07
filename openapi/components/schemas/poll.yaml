@@ -39,3 +39,6 @@ properties:
     type: boolean
     description: True if anyone can participate to this poll, False otherwise.
     example: false
+required:
+  - title
+  - proposals
