@@ -16,8 +16,8 @@ servers:
 paths:
   /polls:
     get:
-      operationId: get-users
-      summary: Gets all users.
+      operationId: get-polls
+      summary: Gets all polls.
       responses:
         '200':
           description: OK
@@ -26,16 +26,16 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/user'
+                  $ref: '#/components/schemas/poll'
     post:
-      operationId: create-user
-      summary: Creates an user
+      operationId: create-poll
+      summary: Creates a poll.
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/user'
+              $ref: '#/components/schemas/poll'
       responses:
         '201':
           description: Created
@@ -46,14 +46,20 @@ paths:
                 properties:
                   id:
                     type: string
-                    description: Id of the created user.
+                    description: Id of the created poll.
           links:
-            get-user:
-              $ref: '#/components/links/get-user'
-            update-user:
-              $ref: '#/components/links/update-user'
-            delete-user:
-              $ref: '#/components/links/delete-user'
+            get-poll:
+              $ref: '#/components/links/get-poll'
+            update-poll:
+              $ref: '#/components/links/update-poll'
+            delete-poll:
+              $ref: '#/components/links/delete-poll'
+            create-ballot:
+              $ref: '#/components/links/create-ballot'
+            list-poll-results:
+              $ref: '#/components/links/list-poll-results'
+        '400':
+          description: Bad Request. Expect at least 2 proposals and a title.
   '/polls/{poll-id}':
     parameters:
       - in: path
@@ -249,8 +255,8 @@ paths:
           $ref: '#/components/responses/poll-not-found'
   /users:
     get:
-      operationId: get-polls
-      summary: Gets all polls.
+      operationId: get-users
+      summary: Gets all users.
       responses:
         '200':
           description: OK
@@ -259,16 +265,16 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/poll'
+                  $ref: '#/components/schemas/user'
     post:
-      operationId: create-poll
-      summary: Creates a poll.
+      operationId: create-user
+      summary: Creates an user
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/poll'
+              $ref: '#/components/schemas/user'
       responses:
         '201':
           description: Created
@@ -279,20 +285,14 @@ paths:
                 properties:
                   id:
                     type: string
-                    description: Id of the created poll.
+                    description: Id of the created user.
           links:
-            get-poll:
-              $ref: '#/components/links/get-poll'
-            update-poll:
-              $ref: '#/components/links/update-poll'
-            delete-poll:
-              $ref: '#/components/links/delete-poll'
-            create-ballot:
-              $ref: '#/components/links/create-ballot'
-            list-poll-results:
-              $ref: '#/components/links/list-poll-results'
-        '400':
-          description: Bad Request. Expect at least 2 proposals and a title.
+            get-user:
+              $ref: '#/components/links/get-user'
+            update-user:
+              $ref: '#/components/links/update-user'
+            delete-user:
+              $ref: '#/components/links/delete-user'
   '/users/{user-id}':
     parameters:
       - in: path
@@ -359,24 +359,6 @@ components:
       type: http
       scheme: bearer
   schemas:
-    user:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: A unique identifier
-          example: 0
-          readOnly: true
-        name:
-          type: string
-          description: Unique user-name
-          example: john.doe
-        description:
-          type: string
-          description: An optional description of the user
-          example: >-
-            John Doe is a multiple-use name that is used when the true name of a
-            person is unknown or is being intentionally concealed
     ballot:
       type: object
       properties:
@@ -423,13 +405,13 @@ components:
         name:
           type: string
           description: >-
-            Unique but short name of the mention, like "Excellent" or "To
-            reject".
+            Unique but short name of the mention, like *Excellent* or *To
+            reject*.
           example: Excellent
         description:
           type: string
           description: An optional description of the mention
-          example: 'In this poll, the mention "To reject" disqualifies the proposal.'
+          example: 'In this poll, the mention *To reject* disqualifies the proposal.'
     participant:
       type: object
       properties:
@@ -536,42 +518,25 @@ components:
           items:
             type: integer
             format: int16
+    user:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: A unique identifier
+          example: 0
+          readOnly: true
+        name:
+          type: string
+          description: Unique user-name
+          example: john.doe
+        description:
+          type: string
+          description: An optional description of the user
+          example: >-
+            John Doe is a multiple-use name that is used when the true name of a
+            person is unknown or is being intentionally concealed
   links:
-    get-user:
-      operationId: get-user
-      parameters:
-        userId: $response.body#/id
-      description: >
-        The `id` value returned in the response can be used as the `user-id`
-        parameter in GET /users/{user-id}.
-    update-user:
-      operationId: update-user
-      parameters:
-        userId: $response.body#/id
-      description: >
-        The `id` value returned in the response can be used as the `user-id`
-        parameter in PATCH /users/{user-id}.
-    delete-user:
-      operationId: delete-user
-      parameters:
-        userId: $response.body#/id
-      description: >
-        The `id` value returned in the response can be used as the `user-id`
-        parameter in DELETE /users/{user-id}.
-    get-ballot:
-      operationId: get-ballot
-      parameters:
-        ballotId: $response.body#/id
-      description: >
-        The `id` value returned in the response can be used as the `ballot-id`
-        parameter in GET /polls/{poll-id}/ballots/{ballot-id}.
-    delete-ballot:
-      operationId: delete-ballot
-      parameters:
-        ballotId: $response.body#/id
-      description: >
-        The `id` value returned in the response can be used as the `ballot-id`
-        parameter in DELETE /polls/{poll-id}/ballots/{ballot-id}.
     get-poll:
       operationId: get-poll
       parameters:
@@ -607,6 +572,41 @@ components:
       description: >
         The `id` value returned in the response can be used as the `poll-id`
         parameter in GET /polls/{poll-id}/results.
+    get-ballot:
+      operationId: get-ballot
+      parameters:
+        ballotId: $response.body#/id
+      description: >
+        The `id` value returned in the response can be used as the `ballot-id`
+        parameter in GET /polls/{poll-id}/ballots/{ballot-id}.
+    delete-ballot:
+      operationId: delete-ballot
+      parameters:
+        ballotId: $response.body#/id
+      description: >
+        The `id` value returned in the response can be used as the `ballot-id`
+        parameter in DELETE /polls/{poll-id}/ballots/{ballot-id}.
+    get-user:
+      operationId: get-user
+      parameters:
+        userId: $response.body#/id
+      description: >
+        The `id` value returned in the response can be used as the `user-id`
+        parameter in GET /users/{user-id}.
+    update-user:
+      operationId: update-user
+      parameters:
+        userId: $response.body#/id
+      description: >
+        The `id` value returned in the response can be used as the `user-id`
+        parameter in PATCH /users/{user-id}.
+    delete-user:
+      operationId: delete-user
+      parameters:
+        userId: $response.body#/id
+      description: >
+        The `id` value returned in the response can be used as the `user-id`
+        parameter in DELETE /users/{user-id}.
   responses:
     poll-not-found:
       description: The specified poll was not found

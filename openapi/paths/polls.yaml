@@ -1,6 +1,6 @@
 get:
-  operationId: get-users
-  summary: Gets all users.
+  operationId: get-polls
+  summary: Gets all polls.
   responses:
     '200':
       description: OK
@@ -9,16 +9,16 @@ get:
           schema:
             type: array
             items:
-              $ref: ../components/schemas/user.yaml
+              $ref: ../components/schemas/poll.yaml
 post:
-  operationId: create-user
-  summary: Creates an user
+  operationId: create-poll
+  summary: Creates a poll.
   requestBody:
     required: true
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/user.yaml
+          $ref: ../components/schemas/poll.yaml
   responses:
     '201':
       description: Created
@@ -29,11 +29,17 @@ post:
             properties:
               id:
                 type: string
-                description: Id of the created user.
+                description: Id of the created poll.
       links:
-        get-user:
-          $ref: ../components/links/get-user.yaml
-        update-user:
-          $ref: ../components/links/update-user.yaml
-        delete-user:
-          $ref: ../components/links/delete-user.yaml
+        get-poll:
+          $ref: ../components/links/get-poll.yaml
+        update-poll:
+          $ref: ../components/links/update-poll.yaml
+        delete-poll:
+          $ref: ../components/links/delete-poll.yaml
+        create-ballot:
+          $ref: ../components/links/create-ballot.yaml
+        list-poll-results:
+          $ref: ../components/links/list-poll-results.yaml
+    '400':
+      description: Bad Request. Expect at least 2 proposals and a title.
