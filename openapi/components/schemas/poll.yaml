@@ -5,14 +5,26 @@ properties:
     description: A unique identifier.
     example: 1jDe1e5eF_IkaYPuoIYX
     readOnly: true
+  uuid:
+    type: string
+    format: uuid
+    description: >
+      A Universally Unique IDentifier for the poll. (version 4)
+    example: bb788552-727d-470b-827e-d7796248d293
+    readOnly: true
   title:
     type: string
+    description: The title of the poll.
     example: What project should our neighbourhood invest in for the next year?
-    description: The title of the poll
   description:
     type: string
-    description: A description of the poll
-    example:
+    description: >
+      A lengthy description of the poll.
+      In here should be stated the constitutive details of the poll,
+      whether it is informative or imperative for example.
+    example: >
+      This poll will help decide which projects get the most attention and budget
+      so you should consider the proposals carefully and with gumption.
   proposals:
     type: array
     description: The proposals being voted in a poll.
