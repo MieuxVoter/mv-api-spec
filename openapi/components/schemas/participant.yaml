@@ -1,17 +1,23 @@
 type: object
 properties:
   id:
+    readOnly: true
     type: string
     description: A unique identifier.
     example: JtRm05yjMAuFCI2uwnFp
-    readOnly: true
-  description:
+  name:
     type: string
-    description: An optional description of the participant.
-    example: John Doe
-  has-participed:
+    maxLength: 32
+    description: An optional name or pseudonym for the participant.
+    example: Jane Doe
+  email:
+    type: string
+    description: >
+      The electronic mail address that will eventually be created at the creation of the participant (not kept in memory).
+    example: jane.doe@example.com
+  has-participated:
     type: boolean
-    description: True if the participant already participed to the poll, False otherwise.
+    description: True if the participant already participated to the poll, False otherwise
     example: true
   poll-id:
     type: string
@@ -21,9 +27,6 @@ properties:
     type: string
     description: The identifier of the user.
     example: 1jDe1e5eF_IkaYPuoIYX
-  mail:
-    type: string    
-    description: The mail that will eventually created at the creation of the participant (not kept in memory).
-    example: john-doe@example.com
+
 required:
   - poll-id
