@@ -17,7 +17,7 @@ paths:
   /polls:
     get:
       operationId: get-polls
-      summary: Gets all polls.
+      summary: Gets all polls
       responses:
         '200':
           description: OK
@@ -29,7 +29,7 @@ paths:
                   $ref: '#/components/schemas/poll'
     post:
       operationId: create-poll
-      summary: Creates a poll.
+      summary: Creates a poll
       requestBody:
         required: true
         content:
@@ -59,7 +59,7 @@ paths:
             list-poll-results:
               $ref: '#/components/links/list-poll-results'
         '400':
-          description: Bad Request. Expect at least 2 proposals and a title.
+          description: Bad Request.  Provide at least 2 proposals and a title.
   '/polls/{poll-id}':
     parameters:
       - in: path
@@ -94,19 +94,23 @@ paths:
         - pollAuth: []
       responses:
         '200':
-          description: OK
+          description: Poll was updated.
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/poll'
+                $ref: '#/components/schemas/poll'
+        '404':
+          $ref: '#/components/responses/poll-not-found'
     delete:
       operationId: delete-poll
       summary: Deletes a poll
+      description: >
+        All the Poll data will be permanently erased. This includes all the
+        corollary models (Tally, Ballots, …) Only the Poll's author may delete
+        it.  (and wild admins)
       responses:
         '200':
-          description: OK
+          description: Poll was deleted.
         '404':
           $ref: '#/components/responses/poll-not-found'
       security:
@@ -187,7 +191,7 @@ paths:
           type: string
     post:
       operationId: add-participant-to-poll
-      description: Add a participant to a poll
+      summary: Adds a participant to a poll
       requestBody:
         content:
           application/json:
@@ -195,7 +199,7 @@ paths:
               $ref: '#/components/schemas/participant'
       responses:
         '200':
-          description: Invitation was sent
+          description: Invitation was sent.
           content:
             text/plain:
               schema:
@@ -211,7 +215,7 @@ paths:
           type: string
     get:
       operationId: get-poll-participant
-      summary: Get a participant from a poll
+      summary: Gets a participant from a poll
       responses:
         '200':
           description: OK
@@ -226,7 +230,7 @@ paths:
         - pollAuth: []
     delete:
       operationId: delete-poll-participant
-      summary: Delete a participant from a poll
+      summary: Deletes a participant from a poll
       responses:
         '200':
           description: OK
@@ -243,7 +247,7 @@ paths:
           type: string
     get:
       operationId: get-poll-results
-      description: Get results of a poll
+      summary: Gets results of a poll
       responses:
         '200':
           description: OK
