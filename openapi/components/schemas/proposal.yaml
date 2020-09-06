@@ -1,22 +1,30 @@
+# Thing unto which the participants pass judgments.
+# Also known as Candidate.
 type: object
 properties:
   id:
     type: integer
-    description: A unique identifier.
+    description: A unique identifier for the proposal, in the poll.
     readOnly: true
     example: 4
+  uuid:
+    type: uuid
+    description: A Universally Unique IDentifier for the proposal. (version 4)
+    readOnly: true
+    example: bb788552-727d-470b-827e-d7796248d293
   name:
     type: string
     description: Unique but short name of the proposal.
     example: A new school
+  description:
+    type: string
+    description: An optional description of the proposal. (no markup allowed)
+    example: This school would welcome 500 pupils.
   ballots:
     type: array
     description: The ballots received by this proposal.
     items:
       $ref: ./ballot.yaml
-  description:
-    type: string
-    description: An optional description of the proposal
-    example: This school would welcome 500 pupils.
+
 required:
   - name
