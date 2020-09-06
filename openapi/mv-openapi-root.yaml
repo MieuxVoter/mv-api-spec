@@ -1,7 +1,8 @@
 openapi: 3.0.0
 info:
-  title: Mieux Voter
-  description: A poll application based on Majority Judgment.
+  title: API Mieux Voter
+  description:
+    $ref: 'DESCRIPTION.md'
   version: 1.0.1-oas3
   termsOfService: 'https://github.com/MieuxVoter'
   contact:
