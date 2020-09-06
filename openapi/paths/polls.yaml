@@ -1,6 +1,6 @@
 get:
   operationId: get-polls
-  summary: Gets all polls.
+  summary: Gets all polls
   responses:
     '200':
       description: OK
@@ -12,7 +12,7 @@ get:
               $ref: ../components/schemas/poll.yaml
 post:
   operationId: create-poll
-  summary: Creates a poll.
+  summary: Creates a poll
   requestBody:
     required: true
     content:
@@ -42,4 +42,4 @@ post:
         list-poll-results:
           $ref: ../components/links/list-poll-results.yaml
     '400':
-      description: Bad Request. Expect at least 2 proposals and a title.
+      description: Bad Request.  Provide at least 2 proposals and a title.
