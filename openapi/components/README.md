@@ -1,5 +1,5 @@
 Reusable components
-===========
+===================
 
 * You can create the following folders here:
   - `schemas` - reusable [Schema Objects](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#schemaObject)
@@ -11,4 +11,4 @@ Reusable components
   - `links` - reusable [Link Objects](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#linkObject)
   - `callbacks` - reusable [Callback Objects](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#callbackObject)
   - `securitySchemes` - reusable [Security Scheme Objects](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#securitySchemeObject)
-* Filename of files inside the folders represent component name, e.g. `Customer.yaml`
+* Filename of files inside the folders represent component name, e.g. `customer.yaml`
