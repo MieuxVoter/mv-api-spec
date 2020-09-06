@@ -2,7 +2,19 @@
   "name": "mieux-voter-openapi",
   "version": "1.0.0",
   "description": "OpenAPI specifications for a Majority Judgment polling application made by MieuxVoter.fr",
-  "keywords": ["majority", "judgment", "poll", "polling", "api", "rest", "openapi", "democracy", "vote", "libre", "open"],
+  "keywords": [
+    "majority",
+    "judgment",
+    "poll",
+    "polling",
+    "api",
+    "rest",
+    "openapi",
+    "democracy",
+    "vote",
+    "libre",
+    "open"
+  ],
   "homepage": "https://github.com/MieuxVoter/mv-api-spec",
   "bugs": "https://github.com/MieuxVoter/mv-api-spec/issues",
   "repository": {
