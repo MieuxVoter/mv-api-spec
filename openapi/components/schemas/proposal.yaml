@@ -3,26 +3,36 @@
 type: object
 properties:
   id:
-    type: integer
-    description: A unique identifier for the proposal, in the poll.
     readOnly: true
+    type: integer
+    description: >
+      A unique identifier for the proposal, in the context of the poll.
+      This is not a globally unique identifier.
     example: 4
   uuid:
-    type: uuid
-    description: A Universally Unique IDentifier for the proposal. (version 4)
     readOnly: true
-    example: bb788552-727d-470b-827e-d7796248d293
+    type: string
+    format: uuid
+    description: >
+      A Universally Unique IDentifier for the proposal. (UUIDv4)
+    example: fa888652-727e-470b-817e-d77862a8d112
   name:
     type: string
-    description: Unique but short name of the proposal.
+    description: >
+      Unique but short name of the proposal.
+      No markup is allowed.
     example: A new school
   description:
     type: string
-    description: An optional description of the proposal. (no markup allowed)
+    description: >
+      An optional, multiline description of the proposal.
+      Commonmark markdown is allowed.
     example: This school would welcome 500 pupils.
   ballots:
     type: array
-    description: The ballots received by this proposal.
+    description: >
+      The ballots received by this proposal.
+      Each participant may emit one ballot (one judgment) per proposal.
     items:
       $ref: ./ballot.yaml
 
