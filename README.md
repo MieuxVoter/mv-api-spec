@@ -1,6 +1,6 @@
 # Mieux Voter OpenAPI Definition
 
-This reposority hosts the OpenAPI specification for the API of MieuxVoter,
+This reposority hosts the **OpenAPI specifications** for the API of MieuxVoter,
 a Majority Judgment polling application spearheaded by the french nonprofit
 [MieuxVoter.fr](https://mieuxvoter.fr).
 
