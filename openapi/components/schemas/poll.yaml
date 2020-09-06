@@ -1,5 +1,6 @@
 type: object
-
+description:
+  $ref: 'poll.md'
 properties:
   id:
     type: string
@@ -30,7 +31,9 @@ properties:
       so you should consider the proposals carefully and with gumption.
   proposals:
     type: array
-    description: The proposals being voted in a poll.
+    description: >
+      The proposals being judged by the participants in a poll.
+      It makes no sense to have less than two proposals in a poll.
     minItems: 2
     maxItems: 20
     items:
