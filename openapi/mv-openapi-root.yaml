@@ -5,7 +5,7 @@ info:
   version: 1.0.1-oas3
   termsOfService: 'https://github.com/MieuxVoter'
   contact:
-    name: Mieux Voter app developpers team
+    name: Mieux Voter App Development Team
     email: app@mieuxvoter.fr
 servers:
   - url: 'https://api.mieuxvoter.fr/v1'
