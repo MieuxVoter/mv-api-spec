@@ -5,7 +5,10 @@ properties:
     description: A unique identifier
     example: 4
     readOnly: true
-  mention:
+  grade:
     type: integer
-    description: The mention item, according to the mentions array defined when creating the poll.
+    description: >
+      One grade of the grading defined when creating the poll.
+      Zero (0) means the worst grade, and it goes upwards from there,
+      up to the size of the grading, minus one.
     example: 2

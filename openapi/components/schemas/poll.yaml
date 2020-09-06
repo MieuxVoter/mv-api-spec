@@ -2,7 +2,7 @@ type: object
 properties:
   id:
     type: string
-    description: A unique identifier
+    description: A unique identifier.
     example: 1jDe1e5eF_IkaYPuoIYX
     readOnly: true
   title:
@@ -12,7 +12,7 @@ properties:
   description:
     type: string
     description: A description of the poll
-    example: 
+    example:
   proposals:
     type: array
     description: The proposals being voted in a poll.
@@ -20,13 +20,13 @@ properties:
     maxItems: 20
     items:
       $ref: ./proposal.yaml
-  mentions:
+  grades:
     type: array
-    description: The mentions on which one participant vote to a proposal.
+    description: The grades on which one participant vote to a proposal.
     minItems: 2
     maxItems: 10
     items:
-      $ref: ./mention.yaml
+      $ref: ./grade.yaml
   participants:
     type: array
     description: The participants that are allowed to participate to the election.
@@ -37,7 +37,7 @@ properties:
     description: Organizer id. If not given, a dummy user is created.
   restrict-participants:
     type: boolean
-    description: True if anyone can participate to this poll, False otherwise.
+    description: True if anyone can participate in this poll, False otherwise.
     example: false
 required:
   - title
