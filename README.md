@@ -1,7 +1,20 @@
 # Mieux Voter OpenAPI Definition
 
-TODO:
-CI on Jenkins
+This reposority hosts the OpenAPI specification for the API of MieuxVoter,
+a Majority Judgment polling application spearheaded by the french nonprofit
+[MieuxVoter.fr](https://mieuxvoter.fr).
+
+
+## TODO
+
+- [x] Draft a spec
+- [ ] CI on Jenkins
+- [ ] Link to generated doc/sandbox
+- [ ] Localization (how?)
+- [ ] …
+
+
+-----
 
 
 ## Working on your OpenAPI Definition
@@ -21,6 +34,7 @@ Bundles the definition to the dist folder.
 
 #### `npm test`
 Validates the definition.
+
 
 ## Contribution Guide
 
