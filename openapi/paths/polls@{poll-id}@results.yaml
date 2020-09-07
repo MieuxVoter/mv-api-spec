@@ -6,7 +6,7 @@ parameters:
       type: string
 get:
   operationId: get-poll-results
-  summary: Gets results of a poll
+  summary: Gets the results of a poll
   responses:
     '200':
       description: OK
