@@ -32,7 +32,13 @@ properties:
     description: The participants that are allowed to participate to the election.
     items:
       $ref: ./participant.yaml
-  restrict_participants:
+  user-id:
+    type: string
+    description: Organizer id. If not given, a dummy user is created.
+  restrict-participants:
     type: boolean
     description: True if anyone can participate to this poll, False otherwise.
     example: false
+required:
+  - title
+  - proposals

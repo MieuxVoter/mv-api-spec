@@ -1,0 +1,39 @@
+get:
+  operationId: get-users
+  summary: Gets all users.
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../components/schemas/user.yaml
+post:
+  operationId: create-user
+  summary: Creates an user
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/user.yaml
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Id of the created user.
+      links:
+        get-user:
+          $ref: ../components/links/get-user.yaml
+        update-user:
+          $ref: ../components/links/update-user.yaml
+        delete-user:
+          $ref: ../components/links/delete-user.yaml

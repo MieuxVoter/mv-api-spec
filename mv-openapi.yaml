@@ -253,6 +253,97 @@ paths:
                 $ref: '#/components/schemas/result'
         '404':
           $ref: '#/components/responses/poll-not-found'
+  /users:
+    get:
+      operationId: get-users
+      summary: Gets all users.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/user'
+    post:
+      operationId: create-user
+      summary: Creates an user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Id of the created user.
+          links:
+            get-user:
+              $ref: '#/components/links/get-user'
+            update-user:
+              $ref: '#/components/links/update-user'
+            delete-user:
+              $ref: '#/components/links/delete-user'
+  '/users/{user-id}':
+    parameters:
+      - in: path
+        name: user-id
+        required: true
+        schema:
+          type: integer
+          format: int64
+    get:
+      operationId: get-user
+      summary: Gets a user by ID
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+        '404':
+          $ref: '#/components/responses/user-not-found'
+    patch:
+      operationId: update-user
+      summary: Updates a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user'
+      security:
+        - {}
+        - userAuth: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/user'
+    delete:
+      operationId: delete-user
+      summary: Deletes a user
+      responses:
+        '200':
+          description: OK
+        '404':
+          $ref: '#/components/responses/user-not-found'
+      security:
+        - userAuth: []
 components:
   securitySchemes:
     participantAuth:
@@ -262,6 +353,9 @@ components:
       type: http
       scheme: bearer
     resultAuth:
+      type: http
+      scheme: bearer
+    userAuth:
       type: http
       scheme: bearer
   schemas:
@@ -296,6 +390,12 @@ components:
           description: The ballots received by this proposal.
           items:
             $ref: '#/components/schemas/ballot'
+        description:
+          type: string
+          description: An optional description of the proposal
+          example: This school would welcome 500 pupils.
+      required:
+        - name
     mention:
       type: object
       properties:
@@ -307,33 +407,49 @@ components:
         name:
           type: string
           description: >-
-            Unique but short name of the mention, like "Excellent" or "To
-            reject".
+            Unique but short name of the mention, like *Excellent* or *To
+            reject*.
           example: Excellent
+        description:
+          type: string
+          description: An optional description of the mention
+          example: 'In this poll, the mention *To reject* disqualifies the proposal.'
+      required:
+        - name
     participant:
       type: object
       properties:
         id:
           type: string
-          description: A unique identifier
+          description: A unique identifier.
           example: JtRm05yjMAuFCI2uwnFp
           readOnly: true
+        description:
+          type: string
+          description: An optional description of the participant.
+          example: John Doe
         has-participed:
           type: boolean
           description: >-
             True if the participant already participed to the poll, False
-            otherwise
+            otherwise.
           example: true
         poll-id:
           type: string
           description: The identifier of the poll that the participant participates on.
           example: 1jDe1e5eF_IkaYPuoIYX
+        user-id:
+          type: string
+          description: The identifier of the user.
+          example: 1jDe1e5eF_IkaYPuoIYX
         mail:
-          type: object
+          type: string
           description: >-
             The mail that will eventually created at the creation of the
             participant (not kept in memory).
           example: john-doe@example.com
+      required:
+        - poll-id
     poll:
       type: object
       properties:
@@ -346,6 +462,10 @@ components:
           type: string
           example: What project should our neighbourhood invest in for the next year?
           description: The title of the poll
+        description:
+          type: string
+          description: A description of the poll
+          example: null
         proposals:
           type: array
           description: The proposals being voted in a poll.
@@ -365,10 +485,16 @@ components:
           description: The participants that are allowed to participate to the election.
           items:
             $ref: '#/components/schemas/participant'
-        restrict_participants:
+        user-id:
+          type: string
+          description: 'Organizer id. If not given, a dummy user is created.'
+        restrict-participants:
           type: boolean
           description: 'True if anyone can participate to this poll, False otherwise.'
           example: false
+      required:
+        - title
+        - proposals
     error:
       type: object
       properties:
@@ -405,6 +531,27 @@ components:
           items:
             type: integer
             format: int16
+      required:
+        - ranking
+        - poll
+    user:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: A unique identifier
+          example: 0
+          readOnly: true
+        name:
+          type: string
+          description: Unique user-name
+          example: john.doe
+        description:
+          type: string
+          description: An optional description of the user
+          example: >-
+            John Doe is a multiple-use name that is used when the true name of a
+            person is unknown or is being intentionally concealed
   links:
     get-poll:
       operationId: get-poll
@@ -455,6 +602,27 @@ components:
       description: >
         The `id` value returned in the response can be used as the `ballot-id`
         parameter in DELETE /polls/{poll-id}/ballots/{ballot-id}.
+    get-user:
+      operationId: get-user
+      parameters:
+        userId: $response.body#/id
+      description: >
+        The `id` value returned in the response can be used as the `user-id`
+        parameter in GET /users/{user-id}.
+    update-user:
+      operationId: update-user
+      parameters:
+        userId: $response.body#/id
+      description: >
+        The `id` value returned in the response can be used as the `user-id`
+        parameter in PATCH /users/{user-id}.
+    delete-user:
+      operationId: delete-user
+      parameters:
+        userId: $response.body#/id
+      description: >
+        The `id` value returned in the response can be used as the `user-id`
+        parameter in DELETE /users/{user-id}.
   responses:
     poll-not-found:
       description: The specified poll was not found
@@ -470,6 +638,12 @@ components:
             $ref: '#/components/schemas/error'
     participant-not-found:
       description: The specified participant was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+    user-not-found:
+      description: The specified user was not found
       content:
         application/json:
           schema:
