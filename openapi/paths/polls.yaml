@@ -1,6 +1,9 @@
 get:
   operationId: get-polls
   summary: Gets all polls
+  tags:
+    - Poll Organization
+    - Poll Participation
   responses:
     '200':
       description: OK
@@ -13,6 +16,8 @@ get:
 post:
   operationId: create-poll
   summary: Creates a poll
+  tags:
+    - Poll Organization
   requestBody:
     required: true
     content:

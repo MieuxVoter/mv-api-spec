@@ -32,6 +32,13 @@ paths:
     $ref: paths/users.yaml
   '/users/{user-id}':
     $ref: 'paths/users@{user-id}.yaml'
+tags:
+  - name: Poll Organization
+    description: >
+      Paths about the organization of polls.
+  - name: Poll Participation
+    description: >
+      Paths about participating to a poll.
 components:
   securitySchemes:
     participantAuth:
