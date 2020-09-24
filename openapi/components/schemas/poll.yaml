@@ -20,9 +20,9 @@ properties:
 #   description: >
 #     A Universally Unique IDentifier for the poll. (version 4)
 #   example: bb788552-727d-470b-827e-d7796248d293
-  title:
+  subject:
     type: string
-    description: The title of the poll.
+    description: The subject of the poll.
     example: What project should our neighbourhood invest in for the next year?
   description:
     type: string
@@ -36,7 +36,7 @@ properties:
   proposals:
     type: array
     description: >
-      The proposals being judged by the participants in a poll.
+      The proposals being judged by the participants of the poll.
       It makes no sense to have less than two proposals in a poll.
     minItems: 2
     maxItems: 20
@@ -79,6 +79,6 @@ properties:
     type: boolean
     description: True if anyone can participate in this poll, False otherwise.
     example: false
-required:
-  - title
-  - proposals
+# required:
+#   - title
+#   - proposals
