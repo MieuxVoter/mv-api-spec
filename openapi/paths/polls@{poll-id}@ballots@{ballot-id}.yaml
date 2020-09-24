@@ -13,8 +13,8 @@ get:
   operationId: get-ballot
   summary: Gets a ballot by ID
   tags:
-    - Poll Participation
     - Poll Deliberation
+    - Poll Participation
   responses:
     '200':
       description: A ballot object

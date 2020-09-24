@@ -33,6 +33,13 @@ paths:
   '/users/{user-id}':
     $ref: 'paths/users@{user-id}.yaml'
 tags:
+  - name: User Management
+    description: |
+      All the paths for:
+        - user creation
+        - authentication
+        - security
+        - trust levels
   - name: Poll Indexation
     description: >
       Paths about indexing (public) polls.
@@ -58,5 +65,8 @@ components:
       type: http
       scheme: bearer
     userAuth:
+      type: http
+      scheme: bearer
+    adminAuth:
       type: http
       scheme: bearer
