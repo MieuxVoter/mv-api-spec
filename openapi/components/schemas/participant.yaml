@@ -1,4 +1,6 @@
 type: object
+description:
+  $ref: 'participant.md'
 properties:
   id:
     readOnly: true

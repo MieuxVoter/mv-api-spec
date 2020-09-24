@@ -7,15 +7,6 @@ id:
     including some special characters like `_`.
   pattern: '[0-9a-fA-F_]{20}'
   example: 1jDe1e5eF_IkaYPuoIYX
-# uuid:
-#   readOnly: true
-#   type: string
-#   format: uuid
-#   # pattern is defined for implementations that don't understand format: uuid
-#   pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
-#   description: >
-#     A Universally Unique IDentifier for the poll. (version 4)
-#   example: bb788552-727d-470b-827e-d7796248d293
 subject:
   type: string
   description: The subject of the poll.
