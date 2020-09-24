@@ -7,6 +7,8 @@ parameters:
 post:
   operationId: create-ballot
   summary: Creates a ballot
+  tags:
+    - Poll Participation
   requestBody:
     required: true
     content:
@@ -26,7 +28,7 @@ post:
             properties:
               id:
                 type: string
-                description: Id of the created ballot.
+                description: Identifier of the created ballot.
       links:
         get-ballot:
           $ref: ../components/links/get-ballot.yaml

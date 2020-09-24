@@ -12,6 +12,9 @@ parameters:
 get:
   operationId: get-ballot
   summary: Gets a ballot by ID
+  tags:
+    - Poll Participation
+    - Poll Deliberation
   responses:
     '200':
       description: A ballot object
@@ -22,6 +25,8 @@ get:
 delete:
   operationId: delete-ballot
   summary: Deletes a ballot
+  tags:
+    - Poll Participation
   responses:
     '200':
       description: OK

@@ -5,6 +5,7 @@ properties:
     description: >
       Unique identifier of the grade in its grading.
       Zero (0) is the worst grade, and it goes upwards.
+      TBD - WIP
     example: 0
     readOnly: true
   name:

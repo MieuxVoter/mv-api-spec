@@ -33,17 +33,24 @@ paths:
   '/users/{user-id}':
     $ref: 'paths/users@{user-id}.yaml'
 tags:
+  - name: Poll Indexation
+    description: >
+      Paths about indexing (public) polls.
   - name: Poll Organization
     description: >
-      Paths about the organization of polls.
+      Paths about organizing a poll.
   - name: Poll Participation
     description: >
       Paths about participating to a poll.
+  - name: Poll Deliberation
+    description: >
+      Paths about deliberating using a poll.
 components:
   securitySchemes:
     participantAuth:
       type: http
       scheme: bearer
+    # organizerAuth
     pollAuth:
       type: http
       scheme: bearer

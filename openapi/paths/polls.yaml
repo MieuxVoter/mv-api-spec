@@ -2,6 +2,7 @@ get:
   operationId: get-polls
   summary: Gets all polls
   tags:
+    - Poll Indexation
     - Poll Organization
     - Poll Participation
   responses:

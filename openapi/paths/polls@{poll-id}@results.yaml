@@ -7,6 +7,8 @@ parameters:
 get:
   operationId: get-poll-results
   summary: Gets the results of a poll
+  tags:
+    - Poll Deliberation
   responses:
     '200':
       description: OK
