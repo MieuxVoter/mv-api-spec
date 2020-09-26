@@ -1,3 +1,4 @@
+# These properties are shared between poll schemes
 id:
   readOnly: true
   type: string

@@ -11,7 +11,7 @@ properties:
   name:
     type: string
     description: >
-      Unique but short name of the grade, like "Excellent" or "To reject".
+      Unique and short name of the grade, like "Excellent" or "To reject".
     example: Good
   description:
     type: string
