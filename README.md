@@ -5,8 +5,14 @@ a Majority Judgment polling application spearheaded by the french nonprofit
 [MieuxVoter.fr](https://mieuxvoter.fr).
 
 
+- APP (Prod) : https://app.mieuxvoter.fr
 - API (Prod) : https://api.mieuxvoter.fr/v1
 - Sandbox : https://sandboxapi.mieuxvoter.fr/v1
+
+
+## Goal
+
+…
 
 
 ## TODO
@@ -14,7 +20,6 @@ a Majority Judgment polling application spearheaded by the french nonprofit
 - [x] Draft a spec
 - [ ] Use the spec
 - [ ] Tweak the spec
-- [x] Link to generated doc/sandbox
 - [ ] CI on Jenkins
 - [ ] Localization (how?)
 - [ ] …
