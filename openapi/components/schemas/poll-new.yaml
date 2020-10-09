@@ -6,3 +6,4 @@ properties:
 required:
   - subject
   - proposals
+  - grades
