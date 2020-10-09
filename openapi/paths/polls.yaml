@@ -1,10 +1,11 @@
 get:
   operationId: get-polls
   summary: Gets all polls
+  description: |
+    Gets all polls that were marked as publicly accessible.
+    Polls only accessible by invitation or link will not be returned.
   tags:
     - Poll Indexation
-    - Poll Organization
-    - Poll Participation
   responses:
     '200':
       description: OK
