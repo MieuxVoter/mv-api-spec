@@ -27,7 +27,7 @@ proposals:
     The proposals being judged by the participants of the poll.
     It makes no sense to have less than two proposals in a poll.
   minItems: 2
-  maxItems: 20
+  maxItems: 256
   items:
     $ref: ./proposal.yaml
 grades:
@@ -46,7 +46,7 @@ grades:
     - LOUSY, MEDIOCRE, OKAY, GOOD, FINE, PEACHY
     - BORING, BEAUTIFUL, FUN, MAGNIFICIENT
   minItems: 2
-  maxItems: 10
+  maxItems: 16
   items:
     $ref: ./grade.yaml
 participants:
