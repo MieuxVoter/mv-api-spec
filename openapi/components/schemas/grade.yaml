@@ -3,9 +3,7 @@ properties:
   id:
     type: integer
     description: >
-      Unique identifier of the grade in its grading.
-      Zero (0) is the worst grade, and it goes upwards.
-      TBD - WIP
+      Identifier of the grade.
     example: 0
     readOnly: true
   name:
@@ -17,5 +15,12 @@ properties:
     type: string
     description: An optional description of the grade.
     example: In this poll, the grade "To reject" disqualifies the proposal.
+  level:
+    type: integer
+    description: |
+      Unique level of the grade in its grading.
+      Zero (0) is the worst grade, and it goes upwards.
+      Each grade of a poll must have a unique level.
 required:
   - name
+  - level
