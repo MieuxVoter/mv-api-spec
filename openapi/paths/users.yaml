@@ -1,6 +1,9 @@
+#
 get:
   operationId: get-users
-  summary: Gets all users.
+  summary: Gets all users
+  tags:
+    - User Management
   responses:
     '200':
       description: OK
@@ -10,9 +13,13 @@ get:
             type: array
             items:
               $ref: ../components/schemas/user.yaml
+  security:
+    - adminAuth: []
 post:
   operationId: create-user
   summary: Creates an user
+  tags:
+    - User Management
   requestBody:
     required: true
     content:

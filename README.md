@@ -1,7 +1,28 @@
 # Mieux Voter OpenAPI Definition
 
-TODO:
-CI on Jenkins
+This reposority hosts the **OpenAPI specifications** for the API of MieuxVoter,
+a Majority Judgment polling application spearheaded by the french nonprofit
+[MieuxVoter.fr](https://mieuxvoter.fr).
+
+
+- APP (Prod) : https://app.mieuxvoter.fr
+- API (Prod) : https://api.mieuxvoter.fr/v1
+- Sandbox : https://sandboxapi.mieuxvoter.fr/v1
+
+
+## Goal
+
+…
+
+
+## TODO
+
+- [x] Draft a spec
+- [ ] Use the spec
+- [ ] Tweak the spec
+- [ ] CI on Jenkins
+- [ ] Localization (how?)
+- [ ] …
 
 
 ## Working on your OpenAPI Definition
@@ -22,12 +43,13 @@ Bundles the definition to the dist folder.
 #### `npm test`
 Validates the definition.
 
+
 ## Contribution Guide
 
-Below is a sample contribution guide. The tools 
-in the repository don't restrict you to any 
+Below is a sample contribution guide. The tools
+in the repository don't restrict you to any
 specific structure. Adjust the contribution guide
-to match your own structure. However, if you 
+to match your own structure. However, if you
 don't have a structure in mind, this is a
 good place to start.
 
@@ -36,7 +58,7 @@ adjust the file/folder organization.
 
 The `.redocly.yaml` controls settings for various
 tools including the lint tool and the reference
-docs engine.  Open it to find examples and 
+docs engine.  Open it to find examples and
 [read the docs](https://docs.redoc.ly/cli/configuration/)
 for more information.
 

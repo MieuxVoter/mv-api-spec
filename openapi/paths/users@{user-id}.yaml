@@ -8,6 +8,8 @@ parameters:
 get:
   operationId: get-user
   summary: Gets a user by ID
+  tags:
+    - User Management
   responses:
     '200':
       description: OK
@@ -20,6 +22,8 @@ get:
 patch:
   operationId: update-user
   summary: Updates a user
+  tags:
+    - User Management
   requestBody:
     required: true
     content:
@@ -41,6 +45,8 @@ patch:
 delete:
   operationId: delete-user
   summary: Deletes a user
+  tags:
+    - User Management
   responses:
     '200':
       description: OK

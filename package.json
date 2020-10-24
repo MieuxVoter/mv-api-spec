@@ -1,6 +1,27 @@
 {
-  "name": "mieux-voter",
+  "name": "mieux-voter-openapi",
   "version": "1.0.0",
+  "description": "OpenAPI specifications for a Majority Judgment polling application made by MieuxVoter.fr",
+  "keywords": [
+    "majority",
+    "judgment",
+    "poll",
+    "polling",
+    "api",
+    "rest",
+    "openapi",
+    "democracy",
+    "vote",
+    "libre",
+    "open"
+  ],
+  "homepage": "https://github.com/MieuxVoter/mv-api-spec",
+  "bugs": "https://github.com/MieuxVoter/mv-api-spec/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MieuxVoter/mv-api-spec.git"
+  },
+  "license": "MIT",
   "dependencies": {
     "@redocly/openapi-cli": "^0.12.10"
   },

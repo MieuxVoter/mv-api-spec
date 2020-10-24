@@ -8,6 +8,9 @@ parameters:
 get:
   operationId: get-poll
   summary: Gets a poll by ID
+  tags:
+    - Poll Organization
+    - Poll Participation
   responses:
     '200':
       description: OK
@@ -20,6 +23,8 @@ get:
 patch:
   operationId: update-poll
   summary: Updates a poll
+  tags:
+    - Poll Organization
   requestBody:
     required: true
     content:
@@ -31,19 +36,25 @@ patch:
     - pollAuth: []
   responses:
     '200':
-      description: OK
+      description: Poll was updated.
       content:
         application/json:
           schema:
-            type: array
-            items:
-              $ref: ../components/schemas/poll.yaml
+            $ref: ../components/schemas/poll.yaml
+    '404':
+      $ref: ../components/responses/poll-not-found.yaml
 delete:
   operationId: delete-poll
   summary: Deletes a poll
+  description: >
+    All the Poll data will be permanently erased.
+    This includes all the corollary models (Tally, Ballots, …)
+    Only the Poll's author may delete it.  (and wild admins)
+  tags:
+    - Poll Organization
   responses:
     '200':
-      description: OK
+      description: Poll was deleted.
     '404':
       $ref: ../components/responses/poll-not-found.yaml
   security:

@@ -1,0 +1,26 @@
+type: object
+properties:
+  id:
+    type: integer
+    description: >
+      Identifier of the grade.
+    example: 0
+    readOnly: true
+  name:
+    type: string
+    description: >
+      Short yet unique name of the grade, like "Excellent" or "To reject".
+    example: Good
+  description:
+    type: string
+    description: An optional description of the grade.
+    example: In this poll, the grade "To reject" disqualifies the proposal.
+  level:
+    type: integer
+    description: |
+      Unique level of the grade in its grading.
+      Zero (0) is the worst grade, and it goes upwards.
+      Each grade of a poll must have a unique level.
+required:
+  - name
+  - level

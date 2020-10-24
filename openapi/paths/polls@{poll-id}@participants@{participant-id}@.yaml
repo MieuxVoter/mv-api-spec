@@ -6,7 +6,7 @@ parameters:
       type: string
 get:
   operationId: get-poll-participant
-  summary: Get a participant from a poll
+  summary: Gets a participant from a poll
   responses:
     '200':
       description: OK
@@ -21,7 +21,7 @@ get:
     - pollAuth: []
 delete:
   operationId: delete-poll-participant
-  summary: Delete a participant from a poll
+  summary: Deletes a participant from a poll
   responses:
     '200':
       description: OK
