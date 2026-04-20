@@ -1,11 +1,12 @@
 openapi: 3.0.0
 info:
-  title: Mieux Voter
-  description: A poll application based on Majority Judgment.
+  title: API Mieux Voter
+  description:
+    $ref: 'DESCRIPTION.md'
   version: 1.0.1-oas3
   termsOfService: 'https://github.com/MieuxVoter'
   contact:
-    name: Mieux Voter app developpers team
+    name: Mieux Voter App Development Team
     email: app@mieuxvoter.fr
 servers:
   - url: 'https://api.mieuxvoter.fr/v1'
@@ -31,11 +32,32 @@ paths:
     $ref: paths/users.yaml
   '/users/{user-id}':
     $ref: 'paths/users@{user-id}.yaml'
+tags:
+  - name: User Management
+    description: |
+      All the paths for:
+        - user creation
+        - authentication
+        - security
+        - trust levels
+  - name: Poll Indexation
+    description: >
+      Paths about indexing (public) polls.
+  - name: Poll Organization
+    description: >
+      Paths about organizing a poll.
+  - name: Poll Participation
+    description: >
+      Paths about participating to a poll.
+  - name: Poll Deliberation
+    description: >
+      Paths about deliberating using a poll.
 components:
   securitySchemes:
     participantAuth:
       type: http
       scheme: bearer
+    # organizerAuth
     pollAuth:
       type: http
       scheme: bearer
@@ -43,5 +65,8 @@ components:
       type: http
       scheme: bearer
     userAuth:
+      type: http
+      scheme: bearer
+    adminAuth:
       type: http
       scheme: bearer

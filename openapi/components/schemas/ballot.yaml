@@ -1,11 +1,21 @@
 type: object
+description:
+  $ref: ballot.md
 properties:
+  # UUIDv4, here ?
   id:
     type: integer
     description: A unique identifier
     example: 4
     readOnly: true
-  mention:
+  grade:
     type: integer
-    description: The mention item, according to the mentions array defined when creating the poll.
+    description: >
+      Index of a grade of the poll's grading.
+      Zero (0) means the worst grade, and it goes upwards from there,
+      up to the size of the grading, minus one.
     example: 2
+  pollId:
+    type: string
+  userId:
+    type: string

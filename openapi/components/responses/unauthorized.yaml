@@ -1,4 +1,6 @@
-description: Unauthorized
+description: >
+  Your are not authorized to do that operation.
+  Try logging in?  If the problem persists, contact an administrator.
 content:
   application/json:
     schema:

@@ -1,6 +1,11 @@
 get:
   operationId: get-polls
-  summary: Gets all polls.
+  summary: Gets all polls
+  description: |
+    Gets all polls that were marked as publicly accessible.
+    Polls only accessible by invitation or link will not be returned.
+  tags:
+    - Poll Indexation
   responses:
     '200':
       description: OK
@@ -12,13 +17,15 @@ get:
               $ref: ../components/schemas/poll.yaml
 post:
   operationId: create-poll
-  summary: Creates a poll.
+  summary: Creates a poll
+  tags:
+    - Poll Organization
   requestBody:
     required: true
     content:
       application/json:
         schema:
-          $ref: ../components/schemas/poll.yaml
+          $ref: ../components/schemas/poll-new.yaml
   responses:
     '201':
       description: Created
@@ -42,4 +49,4 @@ post:
         list-poll-results:
           $ref: ../components/links/list-poll-results.yaml
     '400':
-      description: Bad Request. Expect at least 2 proposals and a title.
+      description: Bad Request.  Provide at least 2 proposals and a title.

@@ -1,4 +1,4 @@
-description: The specified poll was not found
+description: The requested poll was not found.
 content:
   application/json:
     schema:

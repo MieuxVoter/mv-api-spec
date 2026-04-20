@@ -1,12 +1,12 @@
 # Warning: this file has been automatically generated. All manual modifications will be lost, see README.md for details.
 openapi: 3.0.0
 info:
-  title: Mieux Voter
-  description: A poll application based on Majority Judgment.
+  title: API Mieux Voter
+  description: "## What is this?\n\nAn _Application Programming Interface_ (API) for a polling application\nusing **Majority Judgment**.\n\nYou are looking at the specifications of the communication between server and clients, usually because you want to make your own client.\n\n### Help, I'm lost!\n\nBest head to the official application client, then:\n[Application MieuxVoter](https://app.mieuxvoter.fr).\nSee you there !\n\n\n## What is Majority Judgment?\n\nWe believe that it is the most elegant polling system that is available right now.\n\nIt was discovered in 2002 by \U0001F1EB\U0001F1F7 french researchers, and it comes from \U0001F377 wine \U0001F3C6 contests.\n\n\n## Contributing\n\n### I've found a bug!\n\nHead over to our [issues tracker](https://github.com/MieuxVoter/mv-api-spec/issues) with your ideas and contributions.\n\n### But I don't understand code!\n\nIt's okay, we need everyone!\nThere's lots you can do to help, such as translating, documenting, reporting issues, painting pixels, promoting majority judgment…\n\n### Shut up and take my money!\n\nDonations help us boost development : [Donate](https://mieuxvoter.fr/index.php/participer/).\n"
   version: 1.0.1-oas3
   termsOfService: 'https://github.com/MieuxVoter'
   contact:
-    name: Mieux Voter app developpers team
+    name: Mieux Voter App Development Team
     email: app@mieuxvoter.fr
 servers:
   - url: 'https://api.mieuxvoter.fr/v1'
@@ -17,7 +17,7 @@ paths:
   /polls:
     get:
       operationId: get-polls
-      summary: Gets all polls.
+      summary: Gets all polls
       responses:
         '200':
           description: OK
@@ -29,7 +29,7 @@ paths:
                   $ref: '#/components/schemas/poll'
     post:
       operationId: create-poll
-      summary: Creates a poll.
+      summary: Creates a poll
       requestBody:
         required: true
         content:
@@ -59,7 +59,7 @@ paths:
             list-poll-results:
               $ref: '#/components/links/list-poll-results'
         '400':
-          description: Bad Request. Expect at least 2 proposals and a title.
+          description: Bad Request.  Provide at least 2 proposals and a title.
   '/polls/{poll-id}':
     parameters:
       - in: path
@@ -94,19 +94,23 @@ paths:
         - pollAuth: []
       responses:
         '200':
-          description: OK
+          description: Poll was updated.
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/poll'
+                $ref: '#/components/schemas/poll'
+        '404':
+          $ref: '#/components/responses/poll-not-found'
     delete:
       operationId: delete-poll
       summary: Deletes a poll
+      description: >
+        All the Poll data will be permanently erased. This includes all the
+        corollary models (Tally, Ballots, …) Only the Poll's author may delete
+        it.  (and wild admins)
       responses:
         '200':
-          description: OK
+          description: Poll was deleted.
         '404':
           $ref: '#/components/responses/poll-not-found'
       security:
@@ -187,7 +191,7 @@ paths:
           type: string
     post:
       operationId: add-participant-to-poll
-      description: Add a participant to a poll
+      summary: Adds a participant to a poll
       requestBody:
         content:
           application/json:
@@ -195,7 +199,7 @@ paths:
               $ref: '#/components/schemas/participant'
       responses:
         '200':
-          description: Invitation was sent
+          description: Invitation was sent.
           content:
             text/plain:
               schema:
@@ -211,7 +215,7 @@ paths:
           type: string
     get:
       operationId: get-poll-participant
-      summary: Get a participant from a poll
+      summary: Gets a participant from a poll
       responses:
         '200':
           description: OK
@@ -226,7 +230,7 @@ paths:
         - pollAuth: []
     delete:
       operationId: delete-poll-participant
-      summary: Delete a participant from a poll
+      summary: Deletes a participant from a poll
       responses:
         '200':
           description: OK
@@ -243,7 +247,7 @@ paths:
           type: string
     get:
       operationId: get-poll-results
-      description: Get results of a poll
+      summary: Gets results of a poll
       responses:
         '200':
           description: OK
@@ -367,72 +371,95 @@ components:
           description: A unique identifier
           example: 4
           readOnly: true
-        mention:
+        grade:
           type: integer
-          description: >-
-            The mention item, according to the mentions array defined when
-            creating the poll.
+          description: >
+            One grade of the grading defined when creating the poll. Zero (0)
+            means the worst grade, and it goes upwards from there, up to the
+            size of the grading, minus one.
           example: 2
     proposal:
       type: object
       properties:
         id:
-          type: integer
-          description: A unique identifier.
           readOnly: true
+          type: integer
+          description: >
+            A unique identifier for the proposal, in the context of the poll.
+            This is not a globally unique identifier.
           example: 4
+        uuid:
+          readOnly: true
+          type: string
+          format: uuid
+          description: |
+            A Universally Unique IDentifier for the proposal. (UUIDv4)
+          example: fa888652-727e-470b-817e-d77862a8d112
         name:
           type: string
-          description: Unique but short name of the proposal.
+          description: |
+            Unique but short name of the proposal. No markup is allowed.
           example: A new school
-        ballots:
-          type: array
-          description: The ballots received by this proposal.
-          items:
-            $ref: '#/components/schemas/ballot'
         description:
           type: string
-          description: An optional description of the proposal
+          description: >
+            An optional, multiline description of the proposal. Commonmark
+            markdown is allowed.
           example: This school would welcome 500 pupils.
+        ballots:
+          type: array
+          description: >
+            The ballots received by this proposal. Each participant may emit one
+            ballot (one judgment) per proposal.
+          items:
+            $ref: '#/components/schemas/ballot'
       required:
         - name
-    mention:
+    grade:
       type: object
       properties:
         id:
           type: integer
-          description: A unique identifier
+          description: >
+            Unique identifier of the grade in its grading. Zero (0) is the worst
+            grade, and it goes upwards.
           example: 0
           readOnly: true
         name:
           type: string
-          description: >-
-            Unique but short name of the mention, like *Excellent* or *To
-            reject*.
-          example: Excellent
+          description: |
+            Unique but short name of the grade, like "Excellent" or "To reject".
+          example: Good
         description:
           type: string
-          description: An optional description of the mention
-          example: 'In this poll, the mention *To reject* disqualifies the proposal.'
+          description: An optional description of the grade.
+          example: 'In this poll, the grade "To reject" disqualifies the proposal.'
       required:
         - name
     participant:
       type: object
       properties:
         id:
+          readOnly: true
           type: string
           description: A unique identifier.
           example: JtRm05yjMAuFCI2uwnFp
-          readOnly: true
-        description:
+        name:
           type: string
-          description: An optional description of the participant.
-          example: John Doe
-        has-participed:
+          maxLength: 32
+          description: An optional name or pseudonym for the participant.
+          example: Jane Doe
+        email:
+          type: string
+          description: >
+            The electronic mail address that will eventually be created at the
+            creation of the participant (not kept in memory).
+          example: jane.doe@example.com
+        has-participated:
           type: boolean
           description: >-
-            True if the participant already participed to the poll, False
-            otherwise.
+            True if the participant already participated to the poll, False
+            otherwise
           example: true
         poll-id:
           type: string
@@ -442,44 +469,59 @@ components:
           type: string
           description: The identifier of the user.
           example: 1jDe1e5eF_IkaYPuoIYX
-        mail:
-          type: string
-          description: >-
-            The mail that will eventually created at the creation of the
-            participant (not kept in memory).
-          example: john-doe@example.com
       required:
         - poll-id
     poll:
       type: object
+      description: >
+        A `Poll` is the core model of the application.
+
+        A `Poll` exposes a list of `Proposal`s, and `Participant`s may
+        individually give each `Proposal` a `Grade`. (in a `Ballot`)
       properties:
         id:
           type: string
-          description: A unique identifier
+          description: A unique identifier.
           example: 1jDe1e5eF_IkaYPuoIYX
+          readOnly: true
+        uuid:
+          type: string
+          format: uuid
+          pattern: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+          description: |
+            A Universally Unique IDentifier for the poll. (version 4)
+          example: bb788552-727d-470b-827e-d7796248d293
           readOnly: true
         title:
           type: string
+          description: The title of the poll.
           example: What project should our neighbourhood invest in for the next year?
-          description: The title of the poll
         description:
           type: string
-          description: A description of the poll
-          example: null
+          description: >
+            A lengthy description of the poll. In here should be stated the
+            constitutive details of the poll, whether it is informative or
+            imperative for example.
+          example: >
+            This poll will help decide which projects get the most attention and
+            budget so you should consider the proposals carefully and with
+            gumption.
         proposals:
           type: array
-          description: The proposals being voted in a poll.
+          description: >
+            The proposals being judged by the participants in a poll. It makes
+            no sense to have less than two proposals in a poll.
           minItems: 2
           maxItems: 20
           items:
             $ref: '#/components/schemas/proposal'
-        mentions:
+        grades:
           type: array
-          description: The mentions on which one participant vote to a proposal.
+          description: The grades on which one participant vote to a proposal.
           minItems: 2
           maxItems: 10
           items:
-            $ref: '#/components/schemas/mention'
+            $ref: '#/components/schemas/grade'
         participants:
           type: array
           description: The participants that are allowed to participate to the election.
@@ -490,7 +532,7 @@ components:
           description: 'Organizer id. If not given, a dummy user is created.'
         restrict-participants:
           type: boolean
-          description: 'True if anyone can participate to this poll, False otherwise.'
+          description: 'True if anyone can participate in this poll, False otherwise.'
           example: false
       required:
         - title
@@ -517,9 +559,9 @@ components:
         ranking:
           type: array
           description: >-
-            An array representing mentions level for each proposal, according to
-            the mentions list, following the order of the proposals array
-            defined when the related poll has been created.
+            An array representing grades level for each proposal, according to
+            the grades list, following the order of the proposals array defined
+            when the related poll has been created.
           example:
             - 0
             - 6

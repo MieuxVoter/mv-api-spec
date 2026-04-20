@@ -6,7 +6,7 @@ parameters:
       type: string
 post:
   operationId: add-participant-to-poll
-  description: Add a participant to a poll
+  summary: Adds a participant to a poll
   requestBody:
     content:
       application/json:
@@ -14,7 +14,7 @@ post:
           $ref: ../components/schemas/participant.yaml
   responses:
     '200':
-      description: Invitation was sent
+      description: Invitation was sent.
       content:
         text/plain:
           schema:

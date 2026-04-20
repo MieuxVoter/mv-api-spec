@@ -3,3 +3,7 @@ description:
   $ref: 'poll.md'
 properties:
   $ref: 'poll-properties.yaml'
+required:
+  - subject
+  - proposals
+  - grades
